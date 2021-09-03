@@ -49,3 +49,10 @@ C:\Users\Toan\OneDrive\Documents\ZeroXTeam\build\ref\ZeroXTeam.dll
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\build\ZeroXTeam.pdb
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\build\ZeroXTeam.Views.dll
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\build\ZeroXTeam.Views.pdb
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminHome\Index.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminEmail\Index.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminInformation\Index.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminMember\Index.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminProject\Index.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminBlog\Index.cshtml.g.cs
