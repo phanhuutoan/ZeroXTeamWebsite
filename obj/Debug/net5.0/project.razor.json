@@ -15629,18 +15629,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminMember copy 2\\Index.cshtml",
-      "TargetPath": "Views\\AdminMember copy 2\\Index.cshtml",
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminBlog\\Index.cshtml",
+      "TargetPath": "Views\\AdminBlog\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminMember copy\\Index.cshtml",
-      "TargetPath": "Views\\AdminMember copy\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminMember copy 3\\Index.cshtml",
-      "TargetPath": "Views\\AdminMember copy 3\\Index.cshtml",
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminHome\\Register.cshtml",
+      "TargetPath": "Views\\AdminHome\\Register.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15661,6 +15656,16 @@
     {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminInformation\\Index.cshtml",
+      "TargetPath": "Views\\AdminInformation\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminEmail\\Index.cshtml",
+      "TargetPath": "Views\\AdminEmail\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

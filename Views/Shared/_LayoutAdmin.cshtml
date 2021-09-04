@@ -1,3 +1,19 @@
+@{
+  var isActiveMenu = ViewData["ActiveMenu"];
+
+  var activeMenuProject = (string)isActiveMenu == "project" ? "active" : "";
+  var activeMenuMember = (string)isActiveMenu == "member" ? "active" : "";
+  var activeMenuBlog= (string)isActiveMenu == "blog" ? "active" : "";
+  var activeMenuInformation = (string)isActiveMenu == "information" ? "active" : "";
+  var activeMenuEmail = (string)isActiveMenu == "email" ? "active" : "";
+
+  var isAuth = User.Identity.IsAuthenticated;
+
+  var returnUrl = TempData["ReturnUrl"] as string;
+}
+
+@model ZeroXTeam.Models.LoginViewModel
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,30 +30,51 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+        @if (isAuth)
+        {
+          <li class="nav-item @activeMenuProject">
             <a class="nav-link" asp-controller="AdminProject" asp-action="Index">Project</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @activeMenuMember">
             <a class="nav-link" asp-controller="AdminMember" asp-action="Index">Member</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @activeMenuInformation">
             <a class="nav-link" asp-controller="AdminInformation" asp-action="Index">Infomation</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @activeMenuBlog">
             <a class="nav-link" asp-controller="AdminBlog" asp-action="Index">Blog</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item @activeMenuEmail">
             <a class="nav-link" asp-controller="AdminEmail" asp-action="Index">Email</a>
           </li>
+        }
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="email" placeholder="Email">
-          <input class="form-control mr-sm-2" type="password" placeholder="Password">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-        </form>
+        @if (!isAuth)
+        {
+          <form asp-controller="AdminHome" asp-action="LoginPost" class="form-inline my-2 my-lg-0">
+            <input type="hidden" value="@returnUrl" asp-for="ReturnUrl">
+            <div class="form-group">
+              <input class="form-control flex-column mr-sm-2" type="email" placeholder="Email" asp-for="Email">
+              <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <input class="form-control mr-sm-2" type="password" placeholder="Password" asp-for="Password">
+              <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+          </form>            
+        }     
+
+        @if (isAuth)
+        {
+          <form action="/admin/logout" method="POST" class="my-2 my-lg-0">
+            <button type="submit" class="btn btn-warning">Logout</button>
+          </form>            
+        }    
+      
       </div>
     </div>
   </nav>
@@ -52,6 +89,9 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
