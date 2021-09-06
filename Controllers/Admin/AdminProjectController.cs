@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,8 +6,12 @@ namespace ZeroXTeam.Controllers
 {
     public class AdminProjectController : AdminControllerBase
     {
-        [Route("/admin/projects")]
-        [Authorize]
+    public AdminProjectController(IMapper mapper) : base(mapper)
+    {
+    }
+
+    [Route("/admin/projects")]
+        
         public IActionResult Index()
         {
             ViewData["ActiveMenu"]="project";

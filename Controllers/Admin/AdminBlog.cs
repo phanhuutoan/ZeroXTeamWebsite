@@ -1,13 +1,17 @@
-using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ZeroXTeam.Controllers.Admin
 {
     [Route("/admin/blog")]
-    [Authorize]
+    
     public class AdminBlog : AdminControllerBase
     {
-        public IActionResult Index()
+    public AdminBlog(IMapper mapper) : base(mapper)
+    {
+    }
+
+    public IActionResult Index()
         {
             ViewData["Title"] = "Blogs";
             ViewData["ActiveMenu"]="blog";

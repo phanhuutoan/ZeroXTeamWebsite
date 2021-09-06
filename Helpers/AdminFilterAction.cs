@@ -6,6 +6,7 @@ namespace ZeroXTeam.Helpers
 {
   public class AdminFilterAction : IAsyncActionFilter
   {
+    public string DataContent = "";
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
       dynamic ViewBag = (context.Controller as Controller).ViewBag;

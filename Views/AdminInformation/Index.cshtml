@@ -1,5 +1,47 @@
-<div class="container">
-  <h2>
-    Informations
-  </h2>
+@{
+  var informationData = ViewData["InformationData"] as ZeroXTeam.Models.InformationViewModel;
+  var heroUrl = informationData.HeroUrl == null ? "/images/placeholder.png" : informationData.HeroUrl;
+  var aboutUrl = informationData.AboutUrl == null ? "/images/placeholder.png" : informationData.AboutUrl;
+}
+
+@model ZeroXTeam.DTOs.InformationDtos
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <h2>
+        Informations
+      </h2>
+      <form 
+        method="POST"
+        enctype="multipart/form-data"
+        action="/admin/information" >
+        <div class="form-group">
+          <label for="Title">Title</label>
+          <input type="text" asp-for="Title" class="form-control" value="@informationData?.Title">
+        </div>
+        <div class="form-group">
+          <label for="SubTitle">Sub Title</label>
+          <input type="text" asp-for="SubTitle" class="form-control" value="@informationData?.SubTitle">
+        </div>
+        <div class="form-group">
+          <label for="HeroImage">Hero Image</label>
+          <input type="file" asp-for="HeroImage" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="AboutImage">About Image</label>
+          <input type="file" asp-for="AboutImage" class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit">
+          Update
+        </button>
+      </form>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <h3>Hero Image:</h3>
+      <img src="@heroUrl" alt="herourl" class="img-thumbnail mb-4">
+      <h3>About Image</h3>
+      <img src="@aboutUrl" alt="about url" class="img-thumbnail">
+    </div>
+  </div>
 </div>

@@ -12,8 +12,6 @@
   var returnUrl = TempData["ReturnUrl"] as string;
 }
 
-@model ZeroXTeam.Models.LoginViewModel
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,14 +33,14 @@
         <ul class="navbar-nav mr-auto">
         @if (isAuth)
         {
+          <li class="nav-item @activeMenuInformation">
+            <a class="nav-link" asp-controller="AdminInformation" asp-action="Index">Infomation</a>
+          </li>
           <li class="nav-item @activeMenuProject">
             <a class="nav-link" asp-controller="AdminProject" asp-action="Index">Project</a>
           </li>
           <li class="nav-item @activeMenuMember">
             <a class="nav-link" asp-controller="AdminMember" asp-action="Index">Member</a>
-          </li>
-          <li class="nav-item @activeMenuInformation">
-            <a class="nav-link" asp-controller="AdminInformation" asp-action="Index">Infomation</a>
           </li>
           <li class="nav-item @activeMenuBlog">
             <a class="nav-link" asp-controller="AdminBlog" asp-action="Index">Blog</a>
@@ -55,14 +53,12 @@
         @if (!isAuth)
         {
           <form asp-controller="AdminHome" asp-action="LoginPost" class="form-inline my-2 my-lg-0">
-            <input type="hidden" value="@returnUrl" asp-for="ReturnUrl">
+            <input type="hidden" value="@returnUrl" for="ReturnUrl">
             <div class="form-group">
-              <input class="form-control flex-column mr-sm-2" type="email" placeholder="Email" asp-for="Email">
-              <span asp-validation-for="Email" class="text-danger"></span>
+              <input class="form-control flex-column mr-sm-2" type="email" placeholder="Email" name="Email">
             </div>
             <div class="form-group">
-              <input class="form-control mr-sm-2" type="password" placeholder="Password" asp-for="Password">
-              <span asp-validation-for="Password" class="text-danger"></span>
+              <input class="form-control mr-sm-2" type="password" placeholder="Password" name="Password">
             </div>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
           </form>            

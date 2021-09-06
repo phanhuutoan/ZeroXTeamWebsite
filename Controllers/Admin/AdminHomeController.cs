@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ZeroXTeam.Data;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Models;
 using System.Web;
+using AutoMapper;
 
 namespace ZeroXTeam.Controllers
 {
     [Route("admin")]
     public class AdminHomeController : AdminControllerBase
     {
-    private readonly DataContext _context;
+    private readonly AdminRepository _adminRepo;
 
-    public AdminHomeController(DataContext context)         
+        public AdminHomeController(AdminRepository adminRepository, IMapper mapper) : base(mapper)         
         {
-            _context = context;
+            _adminRepo = adminRepository;
         }
 
         public IActionResult Index([FromQuery] string ReturnUrl)
@@ -46,7 +46,7 @@ namespace ZeroXTeam.Controllers
                 return BadRequest("Your data is invalid");
             }
 
-            if (await _context.AdminAccount.AnyAsync())
+            if (await _adminRepo.AnyAdminAsync())
             {
                 TempData["ValidError"] = "Only one admin can be register this way";
                 return RedirectToAction("register");
@@ -65,9 +65,9 @@ namespace ZeroXTeam.Controllers
                 PasswordSalt = passwordSalt
             };
 
-            _context.AdminAccount.Add(adminAccount);
+            _adminRepo.CreateAdmin(adminAccount);
 
-            await _context.SaveChangesAsync();
+            await _adminRepo.SaveAllChangeAsync();
 
             return RedirectToAction("index", "AdminHome");
         }
@@ -75,9 +75,7 @@ namespace ZeroXTeam.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginPost(LoginViewModel loginData)
         {
-            var user = await _context
-                .AdminAccount
-                .SingleOrDefaultAsync(user => user.Email == loginData.Email);
+            var user = await _adminRepo.GetAdminAccountByEmailAsync(loginData.Email);
 
             if (user == null)
             {
