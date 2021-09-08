@@ -61,6 +61,11 @@ namespace ZeroXTeam.Services
 
         public async Task<bool> DeleteImage(string publicId)
         {
+            if (string.IsNullOrEmpty(publicId))
+            {
+                publicId = "unknownId";
+            }
+
             var destroyParams = new DeletionParams(publicId);
 
             var result = await _cloudinary.DestroyAsync(destroyParams);

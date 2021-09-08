@@ -16,6 +16,21 @@ namespace ZeroXTeam.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.9");
 
+            modelBuilder.Entity("MemberProject", b =>
+                {
+                    b.Property<int>("MemberJoinedId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProjectJoinedId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("MemberJoinedId", "ProjectJoinedId");
+
+                    b.HasIndex("ProjectJoinedId");
+
+                    b.ToTable("MemberProject");
+                });
+
             modelBuilder.Entity("ZeroXTeam.Entities.AdminAccount", b =>
                 {
                     b.Property<int>("Id")
@@ -68,6 +83,85 @@ namespace ZeroXTeam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HomePageInformation");
+                });
+
+            modelBuilder.Entity("ZeroXTeam.Entities.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("JoinedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Member");
+                });
+
+            modelBuilder.Entity("ZeroXTeam.Entities.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Page")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Repository")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("MemberProject", b =>
+                {
+                    b.HasOne("ZeroXTeam.Entities.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MemberJoinedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ZeroXTeam.Entities.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectJoinedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

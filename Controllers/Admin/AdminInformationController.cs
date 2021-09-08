@@ -6,11 +6,12 @@ using ZeroXTeam.Entities;
 using ZeroXTeam.Models;
 using ZeroXTeam.Services;
 using ZeroXTeam.DTOs;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZeroXTeam.Controllers.Admin
 {
-  [Route("/admin/information")]
+    [Route("/admin/information")]
+    [Authorize]
     public class AdminInformationController : AdminControllerBase
     {
     private readonly InformationRepository _informationRepo;
@@ -55,7 +56,7 @@ namespace ZeroXTeam.Controllers.Admin
 
             if (informationDtos.HeroImage?.Length > 0)
             {
-                await _photoService.DeleteImage(existingInformation.HeroPublicId);
+                if (existingInformation != null) await _photoService.DeleteImage(existingInformation.HeroPublicId);
                 var uploadResult = await _photoService.UploadImage(informationDtos.HeroImage);
                 information.HeroPublicId = uploadResult.PublicId;
                 information.HeroUrl = uploadResult.ImageUrl;
@@ -63,7 +64,7 @@ namespace ZeroXTeam.Controllers.Admin
 
             if (informationDtos.AboutImage?.Length > 0)
             {
-                await _photoService.DeleteImage(existingInformation.AboutPublicId);
+                if (existingInformation != null) await _photoService.DeleteImage(existingInformation.AboutPublicId);
                 var uploadResult = await _photoService.UploadImage(informationDtos.AboutImage, 400, 500);
                 information.AboutPublicId = uploadResult.PublicId;
                 information.AboutUrl = uploadResult.ImageUrl;

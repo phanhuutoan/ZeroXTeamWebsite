@@ -6,7 +6,6 @@ using ZeroXTeam.Helpers;
 namespace ZeroXTeam.Controllers
 {    
     [ServiceFilter(typeof(AdminFilterAction))]
-    [Authorize]
     public abstract class AdminControllerBase : Controller
     {
         protected readonly IMapper _mapper;

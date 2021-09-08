@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ZeroXTeam.Controllers.Admin
 {
     [Route("/admin/email")]
-    
+    [Authorize]
     public class AdminEmail : AdminControllerBase
     {
     public AdminEmail(IMapper mapper) : base(mapper)

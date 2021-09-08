@@ -46,7 +46,7 @@ namespace ZeroXTeam.Data
 
       var result = await _context.SaveChangesAsync();
 
-      return result > 1;
+      return result >= 1;
     }
   }
 }

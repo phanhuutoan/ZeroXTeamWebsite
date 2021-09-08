@@ -1,0 +1,31 @@
+@model ZeroXTeam.Models.Partials.EditDelete
+
+<div class="d-flex">
+  <a asp-action="@Model.AspAction" asp-controller="@Model.AspController"
+     asp-route-id="@Model.RouteId" class="btn btn-primary mr-2">
+    <i class="fas fa-pen" style="color: white"></i>
+  </a>
+  <button class="btn btn-danger" onclick="btnDeleteClick(@Model.RouteId)">
+    <i class="fas fa-trash" style="color: white"></i>
+  </button>
+</div>
+
+<script>
+  function btnDeleteClick(id) {
+    const isDel = confirm("Are you sure to delete this item ???")
+
+    if (isDel) {
+      fetch('/admin/projects/delete/' + id, {
+        method: 'POST',
+        body: JSON.stringify({}),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(() => {
+        location.reload()
+      }).error(e => {
+        console.log(e)
+      })      
+    }
+  }  
+</script>

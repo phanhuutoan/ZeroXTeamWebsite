@@ -1,5 +1,65 @@
-<div class="container">
+@{
+  var listOfProject = ViewData["ListProjects"] as List<ZeroXTeam.Entities.Project>;
+  if (listOfProject == null) {
+    listOfProject = new List<ZeroXTeam.Entities.Project>();
+  };
+}
+<style>
+  .table td {
+    vertical-align: middle !important;
+  }
+
+  .table th {
+    vertical-align: middle !important;
+  }
+</style>
+
+<div class="container mt-4">
   <h2>
-    Project here
+    Project lists
+    <a asp-action="GetCreate" asp-controller="AdminProject" class="btn btn-success ml-2">
+      Create one
+    </a>
   </h2>
+  <div>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Start date</th>
+      <th scope="col">End date</th>
+      <th scope="col">Edit / Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var project in listOfProject)
+    {
+      var editDeleteModel = new ZeroXTeam.Models.Partials.EditDelete()
+      {
+        AspAction = "GetEdit",
+        AspController = "AdminProject",
+        RouteId = project.Id,
+      };
+
+      <tr>
+        <th scope="row">@project?.Id</th>
+        <td>@project?.Name</td>
+        <td>
+          <img src="@project?.PhotoUrl" alt="photo" height="100" class="img-thumbnail" style="height: 7rem;">
+        </td>
+        <td>@project?.StartDate</td>
+        <td>@project?.EndDate</td>
+        <td>
+
+          <partial name="components/_EditDelete"
+                   model="@editDeleteModel"></partial>
+
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+  </div>
 </div>

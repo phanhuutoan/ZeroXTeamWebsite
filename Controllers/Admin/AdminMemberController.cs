@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ZeroXTeam.Controllers.Admin
 {
     [Route("/admin/members")]
-    
+    [Authorize]
     public class AdminMemberController : AdminControllerBase
     {
     public AdminMemberController(IMapper mapper) : base(mapper)

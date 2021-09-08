@@ -90,3 +90,5 @@ C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\AutoMapper.Extension
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\CloudinaryDotNet.dll
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminProject\GetCreate.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\components\_EditDelete.cshtml.g.cs

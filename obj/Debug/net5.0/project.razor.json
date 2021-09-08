@@ -15644,6 +15644,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_EditDelete.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_EditDelete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -15651,6 +15656,11 @@
     {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminProject\\GetCreate.cshtml",
+      "TargetPath": "Views\\AdminProject\\GetCreate.cshtml",
       "FileKind": "mvc"
     },
     {

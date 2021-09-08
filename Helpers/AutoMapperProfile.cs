@@ -9,6 +9,7 @@ namespace ZeroXTeam.Helpers
     public AutoMapperProfile()
     {
         CreateMap<HomePageInformation, InformationViewModel>();
+        CreateMap<ProjectViewModel, Project>();
     }
   }
 }
