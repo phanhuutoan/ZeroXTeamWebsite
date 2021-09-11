@@ -123,11 +123,12 @@ namespace ZeroXTeam.Controllers
             var claims = new List<Claim>() 
             {
                 new Claim("Email", email),
-                new Claim(ClaimTypes.NameIdentifier, email)
+                new Claim(ClaimTypes.NameIdentifier, email),
+                new Claim(ClaimTypes.Name, email)
             };
 
             var claimPrincipal = new ClaimsPrincipal();
-            var ClaimsIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            var ClaimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             claimPrincipal.AddIdentity(ClaimsIdentity);
 

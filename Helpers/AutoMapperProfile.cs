@@ -1,6 +1,7 @@
 using AutoMapper;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Models;
+using ZeroXTeam.Models.RenderViewModel;
 
 namespace ZeroXTeam.Helpers
 {
@@ -10,6 +11,9 @@ namespace ZeroXTeam.Helpers
     {
         CreateMap<HomePageInformation, InformationViewModel>();
         CreateMap<ProjectViewModel, Project>();
+        CreateMap<MemberViewModel, Member>();
+        CreateMap<Project, RenderProjectViewModel>();
+        CreateMap<Member, RenderMemberViewModel>();
     }
   }
 }

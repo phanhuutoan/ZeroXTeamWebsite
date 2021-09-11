@@ -20,12 +20,17 @@
     <title>Admin - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
     <link rel="stylesheet" href="~/font-awesome/css/all.min.css">
+    
+    <script src="~/lib/vue/vue.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" asp-controller="AdminHome" asp-action="Index">ZeroX Admin</a>
+      <a class="navbar-brand" asp-controller="AdminHome" asp-action="Index">
+        <img src="~/images/logo-admin.png" alt="logo" height="50">
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -68,7 +73,7 @@
         @if (isAuth)
         {
           <form action="/admin/logout" method="POST" class="my-2 my-lg-0">
-            <button type="submit" class="btn btn-warning">Logout</button>
+            <button type="submit" class="btn btn-danger">Logout</button>
           </form>            
         }    
       
@@ -79,12 +84,6 @@
   <div>
     @RenderBody()
   </div>
-  
-  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - ZeroXTeam - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>

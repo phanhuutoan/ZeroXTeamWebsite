@@ -14,5 +14,11 @@ namespace ZeroXTeam.Controllers
         {
             _mapper = mapper;
         }
+
+        protected void SetTitleAndActiveMenu(string title, string activeMenu)
+        {
+            ViewData["Title"] = title;
+            ViewData["ActiveMenu"] = activeMenu;
+        }
     }
 }

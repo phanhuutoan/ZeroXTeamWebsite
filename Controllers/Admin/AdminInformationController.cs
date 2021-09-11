@@ -7,6 +7,7 @@ using ZeroXTeam.Models;
 using ZeroXTeam.Services;
 using ZeroXTeam.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using ZeroXTeam.Helpers;
 
 namespace ZeroXTeam.Controllers.Admin
 {
@@ -29,8 +30,7 @@ namespace ZeroXTeam.Controllers.Admin
 
         public async Task<IActionResult> Index()
         {
-            ViewData["Title"] = "Landing page information";
-            ViewData["ActiveMenu"] = "information";
+            SetTitleAndActiveMenu("Landing page information", ActiveMenu.Information);
 
             var data = await _informationRepo.GetInformation();
 

@@ -1,9 +1,12 @@
+@using System.Text.Json
+@using ZeroXTeam.Models.RenderViewModel
 @model ZeroXTeam.Models.ProjectViewModel
 
 @{
   var isEdit = ViewData["EditMode"] != null;
-  var project = ViewData["Project"] as ZeroXTeam.Entities.Project;
-
+  var project = ViewData["Project"] as RenderProjectViewModel;
+  var members = ViewData["Members"] as List<ZeroXTeam.Entities.Member>;
+ 
   var title = !isEdit ? "Create Project" : "Edit Project";
   var buttonTitle = !isEdit ? "Create" : "Edit";
 
@@ -24,7 +27,7 @@
       </div>
       <div class="form-group">
         <label for="Description">Description</label>
-        <input type="text" asp-for="Description" class="form-control" value="@project?.Description">
+        <textarea rows="4" class="form-control" name="Description">@project?.Description</textarea>
       </div>
       <div class="form-group">
         <label for="Photo">Project Photo</label>
@@ -57,3 +60,64 @@
     }
   </div>
 </div>
+    
+<div id="app-member" class="container" style="margin-top: 3rem; margin-bottom: 3rem ">
+  @if (isEdit)
+  {
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="mb-4">Add member to this project</h4>  
+        <div class="row">
+          <div v-for="member in members" class="member col-md-4 col-sm-6 mt-2" v-on:click="addMember(member.Id)">
+            <div class="member-info">
+              <img :src="member.PhotoUrl" alt="member photo">
+              <h6> {{ member.Name }} </h6>
+            </div>
+          </div>    
+        </div>
+      </div>
+
+      <form 
+        :action="`/admin/projects/add-members/${@project?.Id}?memberIds=${memberIds}`" 
+        class="col-md-6" method="POST">
+        <h4 class="mb-4">Member joined this project (click to remove)</h4>  
+        <div class="row">
+          <div v-for="member in membersInProjects" class="member col-md-4 col-sm-6 mt-2"  v-on:click="removeMember(member.Id)">
+            <div class="member-info member-info--red">
+              <img :src="member.PhotoUrl" alt="member photo">
+              <h6> {{ member.Name }} </h6>
+            </div>
+          </div>    
+        </div>
+        <button class="btn btn-primary mt-4">Save members</button>
+      </form>    
+    </div>      
+  }
+</div>
+<script>
+  new Vue({
+    el: '#app-member',
+    data: {
+      memberId: '',
+      members: @Html.Raw(JsonSerializer.Serialize(members)) || [],
+      membersInProjects: @Html.Raw(JsonSerializer.Serialize(project?.MemberJoined)) || []
+    },
+    methods: {
+      addMember(id) {
+        const member = this.members.find(ele => ele.Id === id)
+        this.membersInProjects.push(member);
+        this.members = this.members.filter(ele => ele.Id !== id)
+      },
+      removeMember(id) {
+        const member = this.membersInProjects.find(ele => ele.Id === id)
+        this.members.push(member);
+        this.membersInProjects = this.membersInProjects.filter(ele => ele.Id !== id)
+      }
+    },
+    computed: {
+      memberIds() {
+        return this.membersInProjects.map(ele => ele.Id).join(',')
+      }
+    }
+  })
+</script>

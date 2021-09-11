@@ -1,15 +1,27 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ZeroXTeam.Entities;
+using AutoMapper.QueryableExtensions;
+using AutoMapper;
+using ZeroXTeam.Models.RenderViewModel;
 
 namespace ZeroXTeam.Data
 {
   public class ProjectRepository : RepositoryBase
   {
+    private MemberRepository _memberRepo;
+    private IMapper _mapper;
 
-    public ProjectRepository(DataContext context) : base(context)
+    public ProjectRepository(
+      DataContext context,
+      MemberRepository memberRepository,
+      IMapper mapper
+    ) : base(context)
     {
+      _memberRepo = memberRepository;
+      _mapper = mapper;
     }
 
     public async Task CreateProject(Project project)
@@ -24,9 +36,20 @@ namespace ZeroXTeam.Data
       return await _context.Project.ToListAsync();
     }
 
+    public async Task<RenderProjectViewModel> GetProjectViewModelById(int id)
+    {
+      return await _context.Project
+        .Include(p => p.MemberJoined)
+        .ProjectTo<RenderProjectViewModel>(_mapper.ConfigurationProvider)
+        .AsNoTracking()
+        .SingleOrDefaultAsync(p => p.Id == id);
+    }
+
     public async Task<Project> GetProjectById(int id)
     {
-      return await _context.Project.FindAsync(id);
+      return await _context.Project
+        .Include(p => p.MemberJoined)
+        .SingleOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<bool> UpdateProject(Project newProject)
@@ -61,6 +84,28 @@ namespace ZeroXTeam.Data
       var result = await _context.SaveChangesAsync();
 
       return result >= 1;
+    }
+
+    public async Task<bool> AddOrRemoveMembers(List<int> ids, int projectId)
+    {
+      var project = await _context.Project
+        .Include(project => project.MemberJoined)
+        .SingleOrDefaultAsync(p => p.Id == projectId);
+      
+      project.MemberJoined.Clear();
+
+      if (ids.Count == 0)
+      {
+        return await UpdateProject(project);
+      }
+
+      var members = await _memberRepo.GetMemberByListOfIds(ids);
+
+      members.ForEach(member => {
+        project.MemberJoined.Add(member);
+      });
+
+      return await UpdateProject(project);
     }
   }
 }

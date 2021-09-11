@@ -1,0 +1,38 @@
+.member-info {
+  display: flex;
+  padding: 0.7rem;
+  background-color: rgb(233, 241, 235);
+  border-radius: 100px;
+  align-items: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.member-info--red {
+  background-color: rgb(229, 194, 194) !important;
+}
+
+.member-info img {
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: 0.6rem;
+}
+
+.member-info h5 {
+  margin-bottom: 0;
+  margin-right: auto;
+}
+
+.member-info small {
+  margin-right: 0.2rem;
+  color: rgb(158, 158, 158);
+  text-transform: uppercase;
+}
+
+#app-member {
+  min-height: 30rem;
+}
+
+.member-info:hover {
+  box-shadow: 5px 8px 7px -2px rgba(0, 0, 0, 0.38);
+}

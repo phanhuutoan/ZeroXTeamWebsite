@@ -1,9 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ZeroXTeam.Data;
 using ZeroXTeam.Entities;
+using ZeroXTeam.Helpers;
 using ZeroXTeam.Models;
 using ZeroXTeam.Services;
 
@@ -15,24 +20,26 @@ namespace ZeroXTeam.Controllers
     {
     private readonly ProjectRepository _projectRepo;
     private readonly PhotoUploadService _photoService;
+    private readonly MemberRepository _memberRepo;
     const int IMAGE_HEIGHT = 600;
     const int IMAGE_WIDTH = 800;
 
     public AdminProjectController(
         IMapper mapper, 
         ProjectRepository projectRepository,
-        PhotoUploadService photoUploadService
+        PhotoUploadService photoUploadService,
+        MemberRepository memberRepository
         ) : base(mapper)
         {
             _projectRepo = projectRepository;
             _photoService = photoUploadService;
+            _memberRepo = memberRepository;
         }
 
         [HttpGet]        
         public async Task<IActionResult> Index()
         {
-            ViewData["ActiveMenu"]="project";
-            ViewData["Title"] = "Projects";
+            SetTitleAndActiveMenu("Projects page", ActiveMenu.Project);
 
             var listProjects = await _projectRepo.GetAllProjects();
 
@@ -44,8 +51,7 @@ namespace ZeroXTeam.Controllers
         [HttpGet("create")]
         public IActionResult GetCreate()
         {
-            ViewData["ActiveMenu"]="project";
-            ViewData["Title"] = "Projects";
+            SetTitleAndActiveMenu("Projects page", ActiveMenu.Project);
 
             return View();
         }
@@ -72,12 +78,17 @@ namespace ZeroXTeam.Controllers
         [HttpGet("edit/{id}")]
         public async Task<IActionResult> GetEdit(int id)
         {
-            ViewData["ActiveMenu"]="project";
-            ViewData["Title"] = "Projects";
+            SetTitleAndActiveMenu("Projects page", ActiveMenu.Project);
 
-            var project = await _projectRepo.GetProjectById(id);
+            var project = await _projectRepo.GetProjectViewModelById(id);
 
-            if (project == null) return NotFound();
+            if (project == null) return NotFound();            
+
+            var listMembers = await _memberRepo.GetMembers(
+                project.MemberJoined.Select(mem => mem.Id).ToList()
+            );
+
+            ViewData["Members"] = listMembers;
 
             ViewData["Project"] = project;
             ViewData["EditMode"] = true;
@@ -117,10 +128,29 @@ namespace ZeroXTeam.Controllers
 
             if (await _projectRepo.DeleteProject(project))
             {
-                return View("Index");
+                return Ok();
             }
 
             return BadRequest("Delete failed");
-        }   
+        }
+
+        [HttpPost("add-members/{id}")]  
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostAddMembers([FromQuery] string memberIds, int id)
+        {
+            var stringArr = memberIds?.Split(",").ToList();
+            
+            var memberIdIntList = new List<int>();
+
+            if (!string.IsNullOrEmpty(memberIds))
+            {
+                memberIdIntList = stringArr.Select(str => int.Parse(str)).ToList();
+            }
+
+            await _projectRepo.AddOrRemoveMembers(memberIdIntList, id);
+
+            return RedirectToAction("GetEdit", new {id = id});
+        }
+
     }
 }

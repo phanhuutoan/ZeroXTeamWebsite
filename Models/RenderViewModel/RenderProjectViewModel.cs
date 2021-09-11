@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace ZeroXTeam.Entities
+namespace ZeroXTeam.Models.RenderViewModel
 {
-    public class Project : BaseEntityWithPhoto
+    public class RenderProjectViewModel : RenderBase
     {
         public string Description { get; set; }
         public string Page { get; set; }
         public string Repository { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public ICollection<Member> MemberJoined { get; set; } = new List<Member>();
+        public ICollection<RenderMemberViewModel> MemberJoined { get; set; }
     }
 }

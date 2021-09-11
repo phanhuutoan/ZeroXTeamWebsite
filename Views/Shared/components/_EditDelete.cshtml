@@ -15,7 +15,7 @@
     const isDel = confirm("Are you sure to delete this item ???")
 
     if (isDel) {
-      fetch('/admin/projects/delete/' + id, {
+      fetch('@Model.DeleteRoute' + id, {
         method: 'POST',
         body: JSON.stringify({}),
         headers: {
