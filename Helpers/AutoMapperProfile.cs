@@ -14,6 +14,7 @@ namespace ZeroXTeam.Helpers
         CreateMap<MemberViewModel, Member>();
         CreateMap<Project, RenderProjectViewModel>();
         CreateMap<Member, RenderMemberViewModel>();
+        CreateMap<BlogViewModel, Blog>();
     }
   }
 }

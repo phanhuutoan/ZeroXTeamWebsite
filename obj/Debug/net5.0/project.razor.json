@@ -15629,6 +15629,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminBlog\\GetCreate.cshtml",
+      "TargetPath": "Views\\AdminBlog\\GetCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminBlog\\Index.cshtml",
       "TargetPath": "Views\\AdminBlog\\Index.cshtml",
       "FileKind": "mvc"
@@ -15636,6 +15641,11 @@
     {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminHome\\Register.cshtml",
       "TargetPath": "Views\\AdminHome\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_EditableRichText.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_EditableRichText.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -7,5 +7,6 @@ namespace ZeroXTeam.Helpers
         public const string Blog = "blog";
         public const string Information = "information";
         public const string Email = "email";
+        public const string Recruitment = "recruitment";
     }
 }

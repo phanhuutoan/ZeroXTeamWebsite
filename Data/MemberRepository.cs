@@ -53,6 +53,7 @@ namespace ZeroXTeam.Data
 
         member.Name = newMember.Name;
         member.Bio = newMember.Bio;
+        member.TeamTitles = newMember.TeamTitles;
         member.JoinedAt = newMember.JoinedAt;
 
         _context.Member.Update(member);

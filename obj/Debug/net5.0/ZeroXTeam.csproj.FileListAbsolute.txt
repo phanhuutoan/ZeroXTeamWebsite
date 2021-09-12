@@ -93,3 +93,5 @@ C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminProject\GetCreate.cshtml.g.cs
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\components\_EditDelete.cshtml.g.cs
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminMember\GetCreate.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminBlog\GetCreate.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\components\_EditableRichText.cshtml.g.cs

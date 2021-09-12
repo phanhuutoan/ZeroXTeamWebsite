@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZeroXTeam.Data;
 
 namespace ZeroXTeam.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210911030703_Blog")]
+    partial class Blog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,9 +151,6 @@ namespace ZeroXTeam.Migrations
                     b.Property<string>("PublicId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TeamTitles")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("Member");
@@ -242,7 +241,7 @@ namespace ZeroXTeam.Migrations
             modelBuilder.Entity("ZeroXTeam.Entities.UserComment", b =>
                 {
                     b.HasOne("ZeroXTeam.Entities.Blog", "Blog")
-                        .WithMany("UserComments")
+                        .WithMany("MyProperty")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -252,7 +251,7 @@ namespace ZeroXTeam.Migrations
 
             modelBuilder.Entity("ZeroXTeam.Entities.Blog", b =>
                 {
-                    b.Navigation("UserComments");
+                    b.Navigation("MyProperty");
                 });
 #pragma warning restore 612, 618
         }

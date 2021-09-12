@@ -5,6 +5,7 @@ namespace ZeroXTeam.Entities
 {
     public class Member : BaseEntityWithPhoto
     {
+        public string TeamTitles { get; set; }
         public string Bio { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime JoinedAt { get; set; }

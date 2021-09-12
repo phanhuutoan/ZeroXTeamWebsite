@@ -1,5 +1,68 @@
-<div class="container">
+@{
+  var listOfBlogs = ViewData["Blogs"] as List<ZeroXTeam.Entities.Blog>;
+  if (listOfBlogs == null) {
+    listOfBlogs = new List<ZeroXTeam.Entities.Blog>();
+  };
+}
+<style>
+  .table td {
+    vertical-align: middle !important;
+  }
+
+  .table th {
+    vertical-align: middle !important;
+  }
+</style>
+
+<div class="container mt-4">
   <h2>
-    Blogs
+    Blog lists
+    <a asp-action="GetCreate" asp-controller="AdminBlog" class="btn btn-success ml-2">
+      Create one
+    </a>
   </h2>
+  <div>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Brief</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
+      <th scope="col">Edit / Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var blog in listOfBlogs)
+    {
+      var editDeleteModel = new ZeroXTeam.Models.Partials.EditDelete()
+      {
+        AspAction = "GetEdit",
+        AspController = "AdminBlog",
+        RouteId = blog.Id,
+        DeleteRoute ="/admin/blogs/delete/"
+      };
+
+      <tr>
+        <th scope="row">@blog?.Id</th>
+        <td>@blog?.Name</td>
+        <td>
+          <img src="@blog?.PhotoUrl" alt="photo" height="100" class="img-thumbnail" style="height: 7rem;">
+        </td>
+        <td style="max-width: 15rem;">@blog?.Brief</td>
+        <td>@blog?.CreatedAt</td>
+        <td>@blog?.UpdatedAt</td>
+        <td>
+
+          <partial name="components/_EditDelete"
+                   model="@editDeleteModel"></partial>
+
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+  </div>
 </div>

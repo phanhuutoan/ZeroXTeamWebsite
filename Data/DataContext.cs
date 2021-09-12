@@ -12,6 +12,7 @@ namespace ZeroXTeam.Data
         public DbSet<HomePageInformation> HomePageInformation {get; set;}
         public DbSet<Member> Member {get; set;}
         public DbSet<Project> Project {get; set;}
+        public DbSet<Blog> Blog {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
