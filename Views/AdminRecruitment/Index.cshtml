@@ -1,0 +1,70 @@
+@{
+  var listOfRecruitments = ViewData["Recruitments"] as List<ZeroXTeam.Entities.Recruitment>;
+  if (listOfRecruitments == null) {
+    listOfRecruitments = new List<ZeroXTeam.Entities.Recruitment>();
+  };
+}
+<style>
+  .table td {
+    vertical-align: middle !important;
+  }
+
+  .table th {
+    vertical-align: middle !important;
+  }
+</style>
+
+<div class="container mt-4">
+  <h2>
+    Recruitment lists
+    <a asp-action="GetCreate" asp-controller="AdminRecruitment" class="btn btn-success ml-2">
+      Create one
+    </a>
+  </h2>
+  <div>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Is Active</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Last Day</th>
+      <th scope="col">Edit / Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var recruit in listOfRecruitments)
+    {
+      var editDeleteModel = new ZeroXTeam.Models.Partials.EditDelete()
+      {
+        AspAction = "GetEdit",
+        AspController = "AdminRecruitment",
+        RouteId = recruit.Id,
+        DeleteRoute ="/admin/recruitment/delete/"
+      };
+
+      var isActive = recruit.IsActive ? "Active" : "In Active";
+
+      <tr>
+        <th scope="row">@recruit?.Id</th>
+        <td>@recruit?.Name</td>
+        <td>
+          <img src="@recruit?.PhotoUrl" alt="photo" height="100" class="img-thumbnail" style="height: 7rem;">
+        </td>
+        <td style="max-width: 15rem;"> @isActive </td>
+        <td>@recruit?.CreatedAt</td>
+        <td>@recruit?.LastDay</td>
+        <td>
+
+          <partial name="components/_EditDelete"
+                   model="@editDeleteModel"></partial>
+
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+  </div>
+</div>

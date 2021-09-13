@@ -15,6 +15,7 @@ namespace ZeroXTeam.Helpers
             services.AddScoped<ProjectRepository>();
             services.AddScoped<MemberRepository>();
             services.AddScoped<BlogRepository>();
+            services.AddScoped<RecruitmentRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
             return services;

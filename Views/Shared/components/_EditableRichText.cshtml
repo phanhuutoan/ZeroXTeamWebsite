@@ -1,0 +1,42 @@
+@model ZeroXTeam.Models.Partials.EditableRichTextEditor;
+
+<div id="@Model.EditorId">
+  <p>Hello World!</p>
+  <p>Some initial <strong>bold</strong> text</p>
+</div>
+<input type="hidden" name="@Model.AspFor" value="@Model.FormValue">
+<!-- Initialize Quill editor -->
+<script>
+  dynamicVar["quill" + "@Model.EditorId"] = new Quill('#@Model.EditorId', {
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean']                                         // remove formatting button
+      ]
+    },
+  });
+
+  if (document.querySelector("[name=@Model.AspFor]").value) {
+    dynamicVar["quill" + "@Model.EditorId"].setContents(
+      JSON.parse(document.querySelector("[name=@Model.AspFor]").value)
+    );
+  }
+
+  dynamicVar["quill" + "@Model.EditorId"].on('editor-change', () => {
+    document.querySelector("[name=@Model.AspFor]").value = JSON.stringify(dynamicVar["quill" + "@Model.EditorId"].getContents().ops)
+  })
+</script>

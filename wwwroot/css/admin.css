@@ -37,6 +37,6 @@
   box-shadow: 5px 8px 7px -2px rgba(0, 0, 0, 0.38);
 }
 
-#editor .ql-editor {
+.ql-editor {
   font-size: 130% !important;
 }

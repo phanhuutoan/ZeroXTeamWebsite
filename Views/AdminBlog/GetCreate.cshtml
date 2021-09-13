@@ -10,6 +10,17 @@
   var formAction = isEdit ? "/admin/blogs/edit/" + blog.Id : "/admin/blogs/create";
 }
 
+@using ZeroXTeam.Models.Partials
+
+@{
+  var ContentEditor = new EditableRichTextEditor()
+  {
+    AspFor = "Content",
+    FormValue = blog?.Content,
+    EditorId= "ContentEditor"
+  };
+}
+
 <div class="container" style="margin-top: 3rem">
   <div class="row">
     <form action="@formAction" method="POST" class="col-md-6 col-sm-12" enctype="multipart/form-data" >
@@ -32,11 +43,9 @@
       </div>
       <div class="form-group">
         <label for="Content">Content</label>
-        <div id="editor">
-          <p>Hello World!</p>
-          <p>Some initial <strong>bold</strong> text</p>
-        </div>
-        <input type="hidden" asp-for="Content" name="Content" value="@blog?.Content">
+
+        <partial name="components/_EditableRichText"
+                   model="@ContentEditor"></partial>
       </div>
       <div class="form-group">
         <label for="Author">Author</label>
@@ -56,40 +65,3 @@
     }
   </div>
 </div>
-<!-- Initialize Quill editor -->
-<script>
-  const toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-    [{ 'direction': 'rtl' }],                         // text direction
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-
-    ['clean']                                         // remove formatting button
-  ];
-
-  const contentControl = document.querySelector("[name=Content]")
-
-  const quill = new Quill('#editor', {
-    theme: 'snow',
-    modules: {
-      toolbar: toolbarOptions
-    },
-  });
-
-  if (contentControl.value) {
-    quill.setContents(JSON.parse(contentControl.value));
-  }
-
-  quill.on('editor-change', () => {
-    contentControl.value = JSON.stringify(quill.getContents().ops)
-  })
-</script>
