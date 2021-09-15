@@ -1,9 +1,10 @@
+@using ZeroXTeam.Helpers
+@using ZeroXTeam.Models.Partials
+
 @{
-  var listOfBlogs = ViewData["Blogs"] as List<ZeroXTeam.Entities.Blog>;
-  if (listOfBlogs == null) {
-    listOfBlogs = new List<ZeroXTeam.Entities.Blog>();
-  };
+  var listOfBlogs = ViewData["Blogs"] as PaginationList<ZeroXTeam.Entities.Blog>;
 }
+
 <style>
   .table td {
     vertical-align: middle !important;
@@ -66,3 +67,24 @@
 </table>
   </div>
 </div>
+@{
+  var paginationModel = new PaginationAndSort()
+  {
+    CurrentPage = listOfBlogs.CurrentPage,
+    ItemPerPage = listOfBlogs.ItemPerPage,
+    TotalPages = listOfBlogs.TotalPages,
+    SortBy = listOfBlogs.SortBy,
+    AspController= "AdminBlog",
+    SortOptions = new List<SortOption>()
+    {
+      new SortOption("Id", "By Id"),
+      new SortOption("Name", "By Name"),
+      new SortOption("CreatedAt", "By Created Date"),
+      new SortOption("Updated", "By Updated Date"),
+      new SortOption("Author", "By Author"),
+      new SortOption("View", "By View"),
+    }
+  };
+}
+<partial name="components/_PaginationAndSorting"
+         model="@paginationModel"></partial>

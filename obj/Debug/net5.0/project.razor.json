@@ -15674,6 +15674,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_PaginationAndSorting.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_PaginationAndSorting.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminRecruitment\\Index.cshtml",
       "TargetPath": "Views\\AdminRecruitment\\Index.cshtml",
       "FileKind": "mvc"

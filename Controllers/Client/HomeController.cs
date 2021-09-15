@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ZeroXTeam.Models;
 
-namespace ZeroXTeam.Controllers
+namespace ZeroXTeam.Controllers.Client
 {
     public class HomeController : Controller
     {

@@ -6,6 +6,9 @@ using ZeroXTeam.Entities;
 using AutoMapper.QueryableExtensions;
 using AutoMapper;
 using ZeroXTeam.Models.RenderViewModel;
+using ZeroXTeam.Helpers;
+using ZeroXTeam.DTOs;
+using System;
 
 namespace ZeroXTeam.Data
 {
@@ -31,9 +34,19 @@ namespace ZeroXTeam.Data
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<Project>> GetAllProjects()
+    public async Task<PaginationList<Project>> GetAllProjects(PaginationParams paginationParams)
     {
-      return await _context.Project.ToListAsync();
+      var query =  _context.Project.AsQueryable();
+
+      query = paginationParams.SortBy switch {
+        "Name" => query.OrderBy(p => p.Name),
+        "StartDate" => query.OrderBy(p => p.StartDate),
+        _ => query.OrderBy(p => p.Id),
+      };
+
+      var paginationList = await PaginationList<Project>.CreatePagination(query.AsNoTracking(), paginationParams);
+
+      return paginationList;
     }
 
     public async Task<RenderProjectViewModel> GetProjectViewModelById(int id)

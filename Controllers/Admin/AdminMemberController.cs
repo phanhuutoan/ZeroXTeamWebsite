@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ZeroXTeam.Data;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Helpers;
 using ZeroXTeam.Models;
@@ -26,11 +27,11 @@ namespace ZeroXTeam.Controllers.Admin
             _memberRepo = memberRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(PaginationParams paginationParams)
         {
             SetTitleAndActiveMenu("Members", ActiveMenu.Member);
 
-            var members = await _memberRepo.GetMembers();
+            var members = await _memberRepo.GetMembers(paginationParams);
 
             ViewData["Members"] = members;
 

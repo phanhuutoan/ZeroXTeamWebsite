@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
+using ZeroXTeam.Helpers;
 
 namespace ZeroXTeam.Data
 {
@@ -17,9 +20,20 @@ namespace ZeroXTeam.Data
         return await _context.Blog.FindAsync(id);
     }
 
-    public async Task<List<Blog>> GetBlogs()
+    public async Task<PaginationList<Blog>> GetBlogs(PaginationParams paginationParams)
     {
-        return await _context.Blog.ToListAsync();
+        var query = _context.Blog.AsNoTracking().AsQueryable();
+
+        query = paginationParams.SortBy switch {
+            "Name" => query.OrderBy(e => e.Name),
+            "CreatedAt" => query.OrderBy(e => e.CreatedAt),
+            "UpdatedAt" => query.OrderBy(e => e.UpdatedAt),
+            "Author" => query.OrderBy(e => e.Author),
+            "Views" => query.OrderBy(e => e.Views),
+            _ => query.OrderBy(e => e.Id)
+        };
+
+        return await PaginationList<Blog>.CreatePagination(query, paginationParams);
     }
 
     public async Task<bool> SaveChangeAsync()

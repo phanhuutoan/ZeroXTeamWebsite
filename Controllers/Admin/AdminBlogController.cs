@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ZeroXTeam.Data;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Helpers;
 using ZeroXTeam.Models;
@@ -28,11 +29,11 @@ namespace ZeroXTeam.Controllers.Admin
             _photoService = photoUploadService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(PaginationParams paginationParams)
         {
             SetTitleAndActiveMenu("Blogs", ActiveMenu.Blog);
 
-            ViewData["Blogs"] = await _blogRepo.GetBlogs();
+            ViewData["Blogs"] = await _blogRepo.GetBlogs(paginationParams);
 
             return View();
         }

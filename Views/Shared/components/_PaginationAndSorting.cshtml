@@ -1,0 +1,65 @@
+@model ZeroXTeam.Models.Partials.PaginationAndSort;
+
+</div>
+
+  @{
+    var numberOfPages = @Model.TotalPages;
+  }
+<div class="container">
+
+    <div class="d-flex justify-content-end">
+      <nav class="mr-4">
+        <ul class="pagination mb-0">
+          <li class="page-item">
+            <a class="page-link" asp-action="@Model.AspAction"
+                asp-controller="@Model.AspController"
+                asp-route-PageNumber="1" 
+                asp-route-SortBy="@Model.SortBy"
+                aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          @for (int i = 1; i <= numberOfPages; i++)
+          {
+            var isActive = Model.CurrentPage == i ? "active" : "";
+
+            <li class="page-item @isActive">
+              <a class="page-link"
+                asp-action="@Model.AspAction"
+                asp-controller="@Model.AspController"
+                asp-route-SortBy="@Model.SortBy"
+                asp-route-PageNumber="@i">@i</a>
+            </li>          
+          }
+          <li class="page-item">
+            <a class="page-link" asp-action="@Model.AspAction"
+                asp-controller="@Model.AspController"
+                asp-route-SortBy="@Model.SortBy"
+                asp-route-PageNumber="@numberOfPages" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <form class="form-inline" 
+            asp-action="@Model.AspAction"
+            asp-controller="@Model.AspController"
+            method="GET">
+        <input type="hidden" name="ItemPerPage" value="@Model.ItemPerPage">
+        <input type="hidden" name="PageNumber" value="@Model.CurrentPage">
+        <select name="SortBy" id="sortID" class="form-control mr-2">
+          @foreach (var opt in @Model.SortOptions)
+          {
+            var isChecked = opt.Value == @Model.SortBy ? true : false ;
+
+            <option value="@opt.Value" selected="@isChecked" >
+              @opt.DisplayText
+            </option>            
+          }
+        </select>
+        <button class="btn btn-success">Apply Sorting</button>
+      </form>
+
+    </div>
+</div>

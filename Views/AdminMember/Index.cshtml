@@ -1,8 +1,8 @@
+@using ZeroXTeam.Helpers;
+@using ZeroXTeam.Models.Partials
+
 @{
-  var listOfMember = ViewData["Members"] as List<ZeroXTeam.Entities.Member>;
-  if (listOfMember == null) {
-    listOfMember = new List<ZeroXTeam.Entities.Member>();
-  };
+  var listOfMember = ViewData["Members"] as PaginationList<ZeroXTeam.Entities.Member>;
 }
 <style>
   .table td {
@@ -64,3 +64,24 @@
 </table>
   </div>
 </div>
+
+@{
+  var paginationModel = new PaginationAndSort()
+  {
+    CurrentPage = listOfMember.CurrentPage,
+    ItemPerPage = listOfMember.ItemPerPage,
+    TotalPages = listOfMember.TotalPages,
+    SortBy = listOfMember.SortBy,
+    AspController = "AdminMember",
+    SortOptions = new List<SortOption>()
+    {
+      new SortOption("Id", "By Id"),
+      new SortOption("Name", "By Name"),
+      new SortOption("TeamTitle", "Member 's Title"),
+      new SortOption("DateOfBirth", "By Date of birth"),
+      new SortOption("JoinedAt", "Day that member joined"),
+    }
+  };
+}
+  <partial name="components/_PaginationAndSorting"
+          model="@paginationModel"></partial>

@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ZeroXTeam.Data;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Helpers;
 using ZeroXTeam.Models;
@@ -37,11 +38,11 @@ namespace ZeroXTeam.Controllers
         }
 
         [HttpGet]        
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] PaginationParams paginationParams)
         {
             SetTitleAndActiveMenu("Projects page", ActiveMenu.Project);
 
-            var listProjects = await _projectRepo.GetAllProjects();
+            var listProjects = await _projectRepo.GetAllProjects(paginationParams);
 
             ViewData["ListProjects"] = listProjects;
 

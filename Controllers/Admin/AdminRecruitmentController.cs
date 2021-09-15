@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ZeroXTeam.Data;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Helpers;
 using ZeroXTeam.Models;
@@ -24,11 +25,11 @@ namespace ZeroXTeam.Controllers.Admin
             _photoService = photoUploadService;
             _recruitRepo = recruitmentRepository;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(PaginationParams paginationParams)
         {
             SetTitleAndActiveMenu("Recruit members", ActiveMenu.Recruitment);
 
-            var recruitment = await _recruitRepo.GetRecruitments();
+            var recruitment = await _recruitRepo.GetRecruitments(paginationParams);
 
             ViewData["Recruitments"] = recruitment;
             

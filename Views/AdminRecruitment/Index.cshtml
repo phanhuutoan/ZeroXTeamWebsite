@@ -1,8 +1,8 @@
+@using ZeroXTeam.Helpers
+@using ZeroXTeam.Models.Partials
+
 @{
-  var listOfRecruitments = ViewData["Recruitments"] as List<ZeroXTeam.Entities.Recruitment>;
-  if (listOfRecruitments == null) {
-    listOfRecruitments = new List<ZeroXTeam.Entities.Recruitment>();
-  };
+  var listOfRecruitments = ViewData["Recruitments"] as PaginationList<ZeroXTeam.Entities.Recruitment>;
 }
 <style>
   .table td {
@@ -68,3 +68,23 @@
 </table>
   </div>
 </div>
+@{
+  var paginationModel = new PaginationAndSort()
+  {
+    CurrentPage = listOfRecruitments.CurrentPage,
+    ItemPerPage = listOfRecruitments.ItemPerPage,
+    TotalPages = listOfRecruitments.TotalPages,
+    SortBy = listOfRecruitments.SortBy,
+    AspController= "AdminRecruitment",
+    SortOptions = new List<SortOption>()
+    {
+      new SortOption("Id", "By Id"),
+      new SortOption("Name", "By Name"),
+      new SortOption("LastDay", "By Last Day"),
+      new SortOption("IsActive", "By active status"),
+    }
+  };
+}
+
+<partial name="components/_PaginationAndSorting"
+         model="@paginationModel"></partial>

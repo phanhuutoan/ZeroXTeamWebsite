@@ -1,9 +1,10 @@
+@using ZeroXTeam.Helpers
+@using ZeroXTeam.Models.Partials
+
 @{
-  var listOfProject = ViewData["ListProjects"] as List<ZeroXTeam.Entities.Project>;
-  if (listOfProject == null) {
-    listOfProject = new List<ZeroXTeam.Entities.Project>();
-  };
+  var listOfProject = ViewData["ListProjects"] as PaginationList<ZeroXTeam.Entities.Project>;
 }
+
 <style>
   .table td {
     vertical-align: middle !important;
@@ -48,7 +49,7 @@
         <th scope="row">@project?.Id</th>
         <td>@project?.Name</td>
         <td>
-          <img src="@project?.PhotoUrl" alt="photo" height="100" class="img-thumbnail" style="height: 7rem;">
+          <img src="@project?.PhotoUrl" alt="photo" height="85" class="img-thumbnail" style="height: 7rem;">
         </td>
         <td>@project?.StartDate</td>
         <td>@project?.EndDate</td>
@@ -62,5 +63,23 @@
     }
   </tbody>
 </table>
-  </div>
-</div>
+
+@{
+  var paginationModel = new PaginationAndSort()
+  {
+    CurrentPage = listOfProject.CurrentPage,
+    ItemPerPage = listOfProject.ItemPerPage,
+    TotalPages = listOfProject.TotalPages,
+    SortBy = listOfProject.SortBy,
+    AspController= "AdminProject",
+    SortOptions = new List<SortOption>()
+    {
+      new SortOption("Id", "By Id"),
+      new SortOption("Name", "By Name"),
+      new SortOption("StartDate", "By Start Date"),
+    }
+  };
+}
+
+<partial name="components/_PaginationAndSorting"
+         model="@paginationModel"></partial>

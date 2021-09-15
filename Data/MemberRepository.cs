@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
+using ZeroXTeam.Helpers;
 
 namespace ZeroXTeam.Data
 {
@@ -26,9 +28,19 @@ namespace ZeroXTeam.Data
             .SingleOrDefaultAsync(mem => mem.Id == id);
     }
 
-    public async Task<ICollection<Member>> GetMembers()
+    public async Task<PaginationList<Member>> GetMembers(PaginationParams paginationParams)
     {
-        return await _context.Member.ToListAsync();
+        var query = _context.Member.AsNoTracking().AsQueryable();
+
+        query = paginationParams.SortBy switch {
+            "Name" => query.OrderBy(m => m.Name),
+            "TeamTitles" => query.OrderBy(m => m.TeamTitles),
+            "DateOfBirth" => query.OrderBy(m => m.DateOfBirth),
+            "JoinedAt" => query.OrderBy(m => m.JoinedAt),
+            _ => query.OrderBy(m => m.Id)
+        };
+
+        return await PaginationList<Member>.CreatePagination(query, paginationParams);
     }
 
     public async Task<ICollection<Member>> GetMembers(List<int> filteredIds)

@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
+using ZeroXTeam.Helpers;
 
 namespace ZeroXTeam.Data
 {
@@ -16,9 +19,19 @@ namespace ZeroXTeam.Data
         return await _context.Recruitment.FindAsync(id);
     }
 
-    public async Task<List<Recruitment>> GetRecruitments()
-    {
-        return await _context.Recruitment.ToListAsync();
+    public async Task<PaginationList<Recruitment>> GetRecruitments(PaginationParams paginationParams)
+    {        
+        var query = _context.Recruitment.AsNoTracking().AsQueryable();
+
+        query = paginationParams.SortBy switch {
+            "Name" => query.OrderBy(e => e.Name),
+            "IsActive" => query.OrderBy(e => e.IsActive),
+            "LastDay" => query.OrderBy(e => e.LastDay),
+            "CreatedAt" => query.OrderBy(e => e.CreatedAt),
+            _ => query.OrderBy(e => e.Id),
+        };
+
+        return await PaginationList<Recruitment>.CreatePagination(query, paginationParams);
     }
 
     public async Task<bool> SaveChangesAsync()
