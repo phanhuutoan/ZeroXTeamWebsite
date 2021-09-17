@@ -10,6 +10,7 @@
   var title = !isEdit ? "Create Project" : "Edit Project";
   var buttonTitle = !isEdit ? "Create" : "Edit";
 
+  var isChecked = (project?.ShowForClient != null && project.ShowForClient) ? true : false;
   var formAction = isEdit ? "/admin/projects/edit" : "/admin/projects/create";
 }
 
@@ -49,6 +50,19 @@
         <label for="EndDate">End Date</label>
         <input type="date" asp-for="EndDate" class="form-control" value="@project?.EndDate.ToString("yyyy-MM-dd")">
       </div>
+      
+      <div class="form-check mt-2 mb-2">
+        <input 
+          class="form-check-input" 
+          type="checkbox" 
+          value="true" 
+          id="show" 
+          asp-for="ShowForClient" checked="@isChecked">
+        <label class="form-check-label" for="show">
+          Show to client?
+        </label>
+      </div>
+      
       <button class="btn btn-primary">@buttonTitle</button>
     </form>
     @if(isEdit)

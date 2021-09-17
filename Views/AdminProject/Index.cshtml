@@ -31,6 +31,7 @@
       <th scope="col">Image</th>
       <th scope="col">Start date</th>
       <th scope="col">End date</th>
+      <th scope="col">Show Status</th>
       <th scope="col">Edit / Delete</th>
     </tr>
   </thead>
@@ -45,6 +46,8 @@
         DeleteRoute = "/admin/projects/delete/"
       };
 
+      var alertClass = !project.ShowForClient ? "alert-danger" : "alert-success";
+
       <tr>
         <th scope="row">@project?.Id</th>
         <td>@project?.Name</td>
@@ -53,6 +56,9 @@
         </td>
         <td>@project?.StartDate</td>
         <td>@project?.EndDate</td>
+        <td>
+          <p class="alert @alertClass"> Show status </p>
+        </td>
         <td>
 
           <partial name="components/_EditDelete"

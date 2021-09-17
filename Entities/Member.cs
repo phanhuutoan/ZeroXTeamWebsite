@@ -9,6 +9,7 @@ namespace ZeroXTeam.Entities
         public string Bio { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime JoinedAt { get; set; }
+        public bool ShowForClient { get; set; }
         public ICollection<Project> ProjectJoined { get; set; } = new List<Project>();
     }
 }

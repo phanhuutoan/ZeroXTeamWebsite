@@ -30,6 +30,7 @@
       <th scope="col">Image</th>
       <th scope="col">Date Of Birth</th>
       <th scope="col">Joined At</th>
+      <th scope="col">Show for client</th>
       <th scope="col">Edit / Delete</th>
     </tr>
   </thead>
@@ -44,6 +45,8 @@
         DeleteRoute ="/admin/members/delete/"
       };
 
+      var alertClass = !member.ShowForClient ? "alert-danger" : "alert-success";
+
       <tr>
         <th scope="row">@member?.Id</th>
         <td>@member?.Name</td>
@@ -52,6 +55,9 @@
         </td>
         <td>@member?.DateOfBirth</td>
         <td>@member?.JoinedAt</td>
+        <td>
+          <p class="alert @alertClass"> Show status </p>
+        </td>
         <td>
 
           <partial name="components/_EditDelete"

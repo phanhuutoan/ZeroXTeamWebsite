@@ -8,6 +8,7 @@
   var buttonTitle = !isEdit ? "Create" : "Edit";
 
   var formAction = isEdit ? "/admin/members/edit" : "/admin/members/create";
+  var isChecked = (member?.ShowForClient != null && member.ShowForClient) ? true : false;
 }
 
 <div class="container" style="margin-top: 3rem">
@@ -41,6 +42,17 @@
       <div class="form-group">
         <label for="EndDate">Joined Date</label>
         <input type="date" asp-for="JoinedAt" class="form-control" value="@member?.JoinedAt.ToString("yyyy-MM-dd")">
+      </div>
+      <div class="form-check mt-2 mb-2">
+        <input 
+          class="form-check-input" 
+          type="checkbox" 
+          value="true" 
+          id="show" 
+          asp-for="ShowForClient" checked="@isChecked">
+        <label class="form-check-label" for="show">
+          Show to client?
+        </label>
       </div>
       <button class="btn btn-primary">@buttonTitle</button>
     </form>

@@ -14,6 +14,7 @@ namespace ZeroXTeam.Models
         public IFormFile Photo { get; set; }
         public string Page { get; set; }
         public string Repository { get; set; }
+        public bool ShowForClient { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }        

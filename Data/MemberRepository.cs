@@ -67,6 +67,7 @@ namespace ZeroXTeam.Data
         member.Bio = newMember.Bio;
         member.TeamTitles = newMember.TeamTitles;
         member.JoinedAt = newMember.JoinedAt;
+        member.ShowForClient = newMember.ShowForClient;
 
         _context.Member.Update(member);
 
@@ -101,6 +102,20 @@ namespace ZeroXTeam.Data
             PageNumber = 1,
             ItemPerPage = 30    
         }, true);
+    }
+
+    public async Task<int> GetTotal()
+    {
+        return await _context.Member.CountAsync();
+    }
+
+    public async Task<List<Member>> GetShowedItems()
+    {
+        return await _context.Member
+            .Where(mem => mem.ShowForClient)
+            .OrderBy(mem => mem.Id)
+            .Take(9)
+            .ToListAsync();
     }
   }
 }

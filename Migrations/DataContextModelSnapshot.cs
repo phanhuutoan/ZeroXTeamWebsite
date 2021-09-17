@@ -180,6 +180,9 @@ namespace ZeroXTeam.Migrations
                     b.Property<string>("PublicId")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("ShowForClient")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("TeamTitles")
                         .HasColumnType("TEXT");
 
@@ -215,6 +218,9 @@ namespace ZeroXTeam.Migrations
 
                     b.Property<string>("Repository")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("ShowForClient")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");

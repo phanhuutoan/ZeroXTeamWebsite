@@ -9,6 +9,7 @@ namespace ZeroXTeam.Entities
         public string Page { get; set; }
         public string Repository { get; set; }
         public DateTime StartDate { get; set; }
+        public bool ShowForClient { get; set; }
         public DateTime EndDate { get; set; }
         public ICollection<Member> MemberJoined { get; set; } = new List<Member>();
     }

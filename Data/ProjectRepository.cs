@@ -82,6 +82,7 @@ namespace ZeroXTeam.Data
       project.Repository = newProject.Repository;
       project.EndDate = newProject.EndDate;
       project.StartDate = newProject.StartDate;
+      project.ShowForClient = newProject.ShowForClient;
 
       _context.Project.Update(project);
 
@@ -135,6 +136,20 @@ namespace ZeroXTeam.Data
             PageNumber = 1,
             ItemPerPage = 30    
         }, true);
+    }
+
+    public async Task<int> GetTotal()
+    {
+        return await _context.Project.CountAsync();
+    }
+
+    public async Task<List<Project>> GetShowedItems()
+    {
+        return await _context.Project
+            .Where(mem => mem.ShowForClient)
+            .OrderBy(mem => mem.Id)
+            .Take(3)
+            .ToListAsync();
     }
   }
 }

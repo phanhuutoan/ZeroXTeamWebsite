@@ -6,20 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ZeroXTeam.Models;
+using ZeroXTeam.Data;
 
 namespace ZeroXTeam.Controllers.Client
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+    private readonly InformationRepository _informationRepo;
+    private readonly MemberRepository _memberRepo;
+    private ProjectRepository _projectRepo;
+
+    public HomeController(
+            InformationRepository informationRepository,
+            MemberRepository memberRepository,
+            ProjectRepository projectRepository
+        )
         {
-            _logger = logger;
+            _informationRepo = informationRepository;
+            _memberRepo = memberRepository;
+            _projectRepo = projectRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewData["Information"] = await _informationRepo.GetInformation();
+            ViewData["NumberOfMembers"] = await _memberRepo.GetTotal();
+            ViewData["NumberOfProjects"] = await _projectRepo.GetTotal();
+            ViewData["ShowedProjects"] = await _projectRepo.GetShowedItems();
+
             return View();
         }
 
