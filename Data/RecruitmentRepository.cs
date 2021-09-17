@@ -85,5 +85,21 @@ namespace ZeroXTeam.Data
 
         return await SaveChangesAsync();
     }
+
+    public async Task<PaginationList<Recruitment>> Search(string searchStr)
+    {
+
+        var query = _context.Recruitment
+            .Where(re =>
+                re.Name.ToLower().Contains(searchStr.ToLower()) || 
+                re.Description.ToLower().Contains(searchStr.ToLower())
+            );
+
+        return await PaginationList<Recruitment>.CreatePagination(query, new PaginationParams(){
+            ItemPerPage = 30,
+            PageNumber = 1
+        }, true);
+
+    }
   }
 }

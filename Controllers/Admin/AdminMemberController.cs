@@ -112,6 +112,16 @@ namespace ZeroXTeam.Controllers.Admin
 
             return BadRequest("Delete failed");
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearch(string searchString)
+        {
+            SetTitleAndActiveMenu("Search members", ActiveMenu.Member);
+            
+            ViewData["Members"] = await _memberRepo.Search(searchString);
+
+            return View("Index");
+        }
     }
 
 

@@ -116,6 +116,16 @@ namespace ZeroXTeam.Controllers.Admin
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearch(string searchString)
+        {
+            SetTitleAndActiveMenu("Search recruitment", ActiveMenu.Recruitment);
+            
+            ViewData["Recruitments"] = await _recruitRepo.Search(searchString);
+
+            return View("Index");
+        }
     }
 
 }

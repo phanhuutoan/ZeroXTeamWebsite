@@ -134,5 +134,7 @@ namespace ZeroXTeam.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimPrincipal);
         }
+
+
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ZeroXTeam.DTOs;
+using ZeroXTeam.Entities;
 
 namespace ZeroXTeam.Helpers
 {
-    public class PaginationList<T> : List<T>
+    public class PaginationList<T> : List<T> where T: BaseEntityWithPhoto
     {
         public int CurrentPage { get; set; }
         public int ItemPerPage { get; set; }
@@ -24,8 +25,17 @@ namespace ZeroXTeam.Helpers
             TotalPages = (int)Math.Ceiling((double)((double)totalItems / (double)itemPerPage));
         }
 
-    public static async Task<PaginationList<T>> CreatePagination(IQueryable<T> query, PaginationParams paginationParams)
+    public static async Task<PaginationList<T>> CreatePagination(
+            IQueryable<T> query, 
+            PaginationParams paginationParams, 
+            bool isDefaultOrder = false
+        )
         {
+            if (isDefaultOrder)
+            {
+                query = query.OrderBy(data => data.Id);
+            }
+
             var totalCounts = await query.CountAsync();
             var items = await query
                 .Skip((paginationParams.PageNumber - 1) * paginationParams.ItemPerPage)

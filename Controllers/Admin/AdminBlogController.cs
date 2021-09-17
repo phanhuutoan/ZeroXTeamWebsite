@@ -113,6 +113,16 @@ namespace ZeroXTeam.Controllers.Admin
             await _blogRepo.DeleteBlog(blog);
 
             return RedirectToAction("Index");
+        }        
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearch(string searchString)
+        {
+            SetTitleAndActiveMenu("Search blog", ActiveMenu.Blog);
+            
+            ViewData["Blogs"] = await _blogRepo.Search(searchString);
+
+            return View("Index");
         }
     }
 

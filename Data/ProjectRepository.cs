@@ -120,5 +120,21 @@ namespace ZeroXTeam.Data
 
       return await UpdateProject(project);
     }
+
+    public async Task<PaginationList<Project>> Search(string searchString)
+    {
+      var query =  _context.Project
+            .Where(p => 
+                p.Name.ToLower().Contains(searchString.ToLower()) || 
+                p.Description.ToLower().Contains(searchString.ToLower()) ||
+                p.Page.ToLower().Contains(searchString.ToLower())
+            );
+
+        return await PaginationList<Project>.CreatePagination(query, new PaginationParams() 
+        {
+            PageNumber = 1,
+            ItemPerPage = 30    
+        }, true);
+    }
   }
 }

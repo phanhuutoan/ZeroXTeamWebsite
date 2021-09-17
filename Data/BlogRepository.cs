@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ZeroXTeam.DTOs;
@@ -76,5 +76,20 @@ namespace ZeroXTeam.Data
         return await SaveChangeAsync();
     }
 
+    public async Task<PaginationList<Blog>> Search(string searchStr)
+    {
+        var query =  _context.Blog
+            .Where(p => 
+                p.Name.ToLower().Contains(searchStr.ToLower()) || 
+                p.Brief.ToLower().Contains(searchStr.ToLower()) ||
+                p.Content.ToLower().Contains(searchStr.ToLower())
+            );
+
+        return await PaginationList<Blog>.CreatePagination(query, new PaginationParams() 
+        {
+            PageNumber = 1,
+            ItemPerPage = 30    
+        }, true);
+    }
   }
 }

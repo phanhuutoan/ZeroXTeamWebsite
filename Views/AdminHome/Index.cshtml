@@ -2,10 +2,63 @@
   var isAuth = User.Identity.IsAuthenticated;
 }
 
+<style>
+  .search label {
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .search form {
+    margin-top: 2rem;
+  }
+
+  .search button {
+    height: 39px;
+    margin-left: 1rem;
+  }
+
+  .search__group {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-column-gap: .4rem;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+</style>
+
 <div class="container text-center" style="margin-top: 3rem;">
   @if (isAuth)
   {
-    <h2>Welcome back! My Boss 😀 </h2>      
+    <h2>Welcome back! My Boss 😀 </h2>  
+      
+    <div class="search" style="margin-top: 2rem">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <form class="search__group" asp-action="GetSearch" method="GET" asp-controller="AdminBlog">
+            <label for="a">Search blogs</label>
+            <input type="text" class="form-control" placeholder="search blog" name="searchString">
+            <button class="btn btn-primary">Search</button>
+          </form>
+          <form class="search__group" asp-action="GetSearch" method="GET" asp-controller="AdminRecruitment">
+            <label for="a">Search Recruitment</label>
+            <input type="text" class="form-control" placeholder="search recruitment" name="searchString">
+            <button class="btn btn-primary">Search</button>
+          </form>
+        </div>
+        <div class="col-md-6 col-sm-12">        
+          <form class="search__group" asp-action="GetSearch" method="GET" asp-controller="AdminProject">
+            <label for="a">Search projects</label>
+            <input type="text" class="form-control" placeholder="search projects" name="searchString">
+            <button class="btn btn-primary">Search</button>
+          </form>
+          <form class="search__group" asp-action="GetSearch" method="GET" asp-controller="AdminMember">
+            <label for="a">Search members</label>
+            <input type="text" class="form-control" placeholder="search members" name="searchString">
+            <button class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>    
   }
 
   @if (TempData["ValidError"] != null)
@@ -27,7 +80,6 @@
         asp-controller="AdminHome" asp-action="register">
         Sign up
       </a>
-    </div>      
+    </div>    
   }
-
 </div>

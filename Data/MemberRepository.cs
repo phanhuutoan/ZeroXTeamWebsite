@@ -86,5 +86,21 @@ namespace ZeroXTeam.Data
             .Where(member => ids.Contains(member.Id))
             .ToListAsync();
     }
+
+    public async Task<PaginationList<Member>> Search(string searchStr)
+    {
+        var query =  _context.Member
+            .Where(p => 
+                p.Name.ToLower().Contains(searchStr.ToLower()) || 
+                p.Bio.ToLower().Contains(searchStr.ToLower()) ||
+                p.TeamTitles.ToLower().Contains(searchStr.ToLower())
+            );
+
+        return await PaginationList<Member>.CreatePagination(query, new PaginationParams() 
+        {
+            PageNumber = 1,
+            ItemPerPage = 30    
+        }, true);
+    }
   }
 }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace ZeroXTeam.Controllers
     {
         protected readonly IMapper _mapper;
 
-        public AdminControllerBase(IMapper mapper) 
+    public AdminControllerBase(IMapper mapper) 
         {
             _mapper = mapper;
         }

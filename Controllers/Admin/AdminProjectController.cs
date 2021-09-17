@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +13,7 @@ using ZeroXTeam.Services;
 
 namespace ZeroXTeam.Controllers
 {
-    [Authorize]
+  [Authorize]
     [Route("admin/projects")]
     public class AdminProjectController : AdminControllerBase
     {
@@ -151,6 +149,16 @@ namespace ZeroXTeam.Controllers
             await _projectRepo.AddOrRemoveMembers(memberIdIntList, id);
 
             return RedirectToAction("GetEdit", new {id = id});
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearch(string searchString)
+        {
+            SetTitleAndActiveMenu("Search projects", ActiveMenu.Project);
+            
+            ViewData["ListProjects"] = await _projectRepo.Search(searchString);
+
+            return View("Index");
         }
 
     }
