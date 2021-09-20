@@ -1,0 +1,78 @@
+@using ZeroXTeam.Models.RenderViewModel
+@{
+  var project = ViewData["Project"] as RenderProjectViewModel;
+}
+
+<!-- about breadcrumbs -->
+<nav id="breadcrumbs" class="breadcrumbs">
+  <div class="container page-wrapper">
+    <a href="index.html">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Dự Án</span> » <span class="breadcrumb_last" aria-current="page">Dự Án Chi Tiết</span>
+  </div>
+</nav>
+<!-- /about breadcrumbs -->
+
+<!-- project detail -->
+<section class="w3l-project-block py-5">
+  <div class="container py-lg-3 mt-3">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6 project-info pr-lg-5">
+        <h2 class="mb-md-4 mb-3">@project.Name</h2>
+        <p class="mb-md-5 mb-4">@project.Description</p>
+        <a href="/projects" class="btn btn-primary theme-button">Explore</a>
+      </div>
+      <div class="col-lg-6 pl-lg-5 mt-lg-0 mt-5">
+        <img src="@project.PhotoUrl" class="img-fluid shadow img-curve" alt="project photo" />
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="row mb-5 project-sub-info">
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+        <h4>Ngày hoàn thành</h4>
+        <p>@project.EndDate,</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+        <h4>Github</h4>
+        <a href="@project.Repository"> @project.Repository </a>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+        <h4>Ghé thăm</h4>
+        <a href="@project.Page"> @project.Page </a>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12"><h3>Thành viên đóng góp</h3></div>
+    </div>
+    <div class="row team-row pt-3">
+      @foreach (var member in project.MemberJoined)
+      {
+        <div class="col-lg-3 col-sm-6 team-wrap mt-sm-0 pt-sm-0 mt-4 pt-2 mb-2">
+
+          <div class="team-info">
+            <div class="column position-relative img-circle">
+              <a asp-action="MemberDetail" asp-controller="Home" asp-route-id="@member.Id">
+                <img src="@member.PhotoUrl" alt="photo" class="img-fluid team-image" />
+              </a>
+            </div>
+            <div class="column-btm">
+              <h3 class="name-pos">
+                <a asp-action="MemberDetail" asp-controller="Home" asp-route-id="@member.Id">
+                  @member.Name
+                </a>
+              </h3>
+              <p>@member.TeamTitles</p>
+              <div class="social">
+                <a href="@member.Facebook" class="facebook" target="blank">
+                  <span class="fa fa-facebook" aria-hidden="true"></span>
+                </a>
+                <a href="mailto:@member.Email?Subject=Hello" class="twitter" target="blank">
+                  <span class="fa fa-envelope" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>          
+      }
+    </div>
+  </div>
+</section>
+<!-- /project detail -->

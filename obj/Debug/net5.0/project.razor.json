@@ -15654,6 +15654,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Projects.cshtml",
+      "TargetPath": "Views\\Home\\Projects.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_EditDelete.cshtml",
       "TargetPath": "Views\\Shared\\components\\_EditDelete.cshtml",
       "FileKind": "mvc"
@@ -15694,6 +15699,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\ProjectDetail.cshtml",
+      "TargetPath": "Views\\Home\\ProjectDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminRecruitment\\GetCreate.cshtml",
       "TargetPath": "Views\\AdminRecruitment\\GetCreate.cshtml",
       "FileKind": "mvc"
@@ -15716,6 +15726,16 @@
     {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_ClientPagination.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_ClientPagination.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_ClientSorting.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_ClientSorting.cshtml",
       "FileKind": "mvc"
     },
     {

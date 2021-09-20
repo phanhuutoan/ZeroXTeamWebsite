@@ -1,0 +1,49 @@
+@model ZeroXTeam.Models.Partials.ClientPagination;
+
+  @{
+    var isDisabledBottom = Model.CurrentPage == 1 ? "disabled" : "";
+    var isDisabledTop = Model.CurrentPage == Model.TotalPages ? "disabled" : "";
+  }
+
+<!-- pagination -->
+      <nav aria-label="Page Navigation">
+        <ul class="pagination">
+          <li class="page-item @isDisabledBottom">
+            <a class="page-link" 
+             asp-action="Projects"
+              asp-controller="Home"
+              asp-route-PageNumber="1"
+              asp-route-SortBy="@Model.SortBy"
+              aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+
+          @for (int pageIndex = 1; pageIndex <= Model.TotalPages; pageIndex++)
+          {
+            var active = Model.CurrentPage == pageIndex ? "active" : ""; 
+
+            <li class="page-item @active">
+              <a class="page-link" 
+                asp-action="Projects"
+                asp-controller="Home"
+                asp-route-PageNumber="@pageIndex" 
+                asp-route-SortBy="@Model.SortBy"
+              >
+                @pageIndex
+                </a>
+            </li>              
+          }
+
+          <li class="page-item @isDisabledTop">
+            <a class="page-link" 
+              asp-action="Projects"
+              asp-controller="Home"
+              asp-route-PageNumber="@Model.TotalPages"  
+              asp-route-SortBy="@Model.SortBy"
+              aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>

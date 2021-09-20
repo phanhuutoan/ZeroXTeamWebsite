@@ -1,14 +1,15 @@
 ﻿@using System.Web
 @using ZeroXTeam.Entities;
+@using ZeroXTeam.Helpers
 
 @{
     ViewData["Title"] = "Home Page";
+    ViewData["ActiveMenu"] = ActiveMenu.Home;
     
     var information = ViewData["Information"] as HomePageInformation;
     var heroUrl = Html.Raw(information.HeroUrl);
     var showedProjects = ViewData["ShowedProjects"] as List<Project>;
 }
-
   <!--/header-->
   <!-- index-block1 -->
   <section class="w3l-hero-area">

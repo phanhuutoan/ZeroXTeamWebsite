@@ -68,6 +68,8 @@ namespace ZeroXTeam.Data
         member.TeamTitles = newMember.TeamTitles;
         member.JoinedAt = newMember.JoinedAt;
         member.ShowForClient = newMember.ShowForClient;
+        member.Facebook = newMember.Facebook;
+        member.Email = newMember.Email;
 
         _context.Member.Update(member);
 

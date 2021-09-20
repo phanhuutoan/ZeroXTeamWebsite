@@ -2,7 +2,7 @@ namespace ZeroXTeam.DTOs
 {
     public class PaginationParams
     {
-        private int _itemPerPage { get; set; } = 5;
+        private int _itemPerPage { get; set; } = 6;
 
         public int ItemPerPage
         {

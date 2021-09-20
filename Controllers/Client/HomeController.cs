@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ZeroXTeam.Models;
 using ZeroXTeam.Data;
+using ZeroXTeam.DTOs;
+using ZeroXTeam.Helpers;
 
 namespace ZeroXTeam.Controllers.Client
 {
@@ -36,6 +38,27 @@ namespace ZeroXTeam.Controllers.Client
             ViewData["ShowedProjects"] = await _projectRepo.GetShowedItems();
 
             return View();
+        }
+
+        [HttpGet("projects")]
+        public async Task<IActionResult> Projects(PaginationParams paginationParams)
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Project;
+            ViewData["Title"] = "Our Projects";
+            ViewData["Projects"] = await _projectRepo.GetAllProjects(paginationParams);
+
+            return View("Projects");
+        }
+
+        [HttpGet("projects/{id}")]
+        public async Task<IActionResult> ProjectDetail(int id)
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Project;
+            var project = await _projectRepo.GetProjectViewModelById(id);
+            ViewData["Project"] = project;
+            ViewData["Title"] = "Project - " + project.Name;
+
+            return View("ProjectDetail");
         }
 
         public IActionResult Privacy()

@@ -10,6 +10,8 @@ namespace ZeroXTeam.Entities
         public DateTime DateOfBirth { get; set; }
         public DateTime JoinedAt { get; set; }
         public bool ShowForClient { get; set; }
+        public string Facebook { get; set; }
+        public string Email { get; set; }
         public ICollection<Project> ProjectJoined { get; set; } = new List<Project>();
     }
 }

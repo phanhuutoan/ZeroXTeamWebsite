@@ -9,6 +9,8 @@ namespace ZeroXTeam.Models
         public string Name { get; set; }
         public string TeamTitles { get; set; }
         public string Bio { get; set; }
+        public string Facebook { get; set; }
+        public string Email { get; set; }
         public bool ShowForClient { get; set; }        
         public IFormFile Photo { get; set; }
         public DateTime DateOfBirth { get; set; } 

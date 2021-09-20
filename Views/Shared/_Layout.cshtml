@@ -1,4 +1,12 @@
-﻿<!doctype html>
+﻿@using ZeroXTeam.Helpers
+
+@{
+  var activeMenu = ViewData["ActiveMenu"] as string;
+  var activeHome = activeMenu == ActiveMenu.Home ? "active" : "";
+  var activeProject = activeMenu == ActiveMenu.Project ? "active" : "";
+}
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -41,11 +49,11 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item @activeHome">
               <a class="nav-link" href="/">Trang chủ <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="projects.html">Dự án</a>
+            <li class="nav-item @activeProject">
+              <a class="nav-link" href="/projects">Dự án</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="about.html">Về Chúng Tôi</a>
