@@ -14,6 +14,7 @@ namespace ZeroXTeam.Data
         public DbSet<Project> Project {get; set;}
         public DbSet<Blog> Blog {get; set;}
         public DbSet<Recruitment> Recruitment { get; set; }
+        public DbSet<Contact> Contact { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

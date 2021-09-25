@@ -2,8 +2,11 @@
 
 @{
   var activeMenu = ViewData["ActiveMenu"] as string;
+
   var activeHome = activeMenu == ActiveMenu.Home ? "active" : "";
   var activeProject = activeMenu == ActiveMenu.Project ? "active" : "";
+  var activeAbout = activeMenu == ActiveMenu.About ? "active" : "";
+  var activeContact = activeMenu == ActiveMenu.Contact ? "active" : "";
 }
 
 <!doctype html>
@@ -55,14 +58,14 @@
             <li class="nav-item @activeProject">
               <a class="nav-link" href="/projects">Dự án</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">Về Chúng Tôi</a>
+            <li class="nav-item @activeAbout">
+              <a class="nav-link" href="/about">Về Chúng Tôi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="services.html">Tuyển dụng</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Liên hệ</a>
+            <li class="nav-item @activeContact">
+              <a class="nav-link" href="/contact">Liên hệ</a>
             </li>
           </ul>
         </div>

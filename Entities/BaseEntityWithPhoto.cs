@@ -2,10 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ZeroXTeam.Entities
 {
-    public abstract class BaseEntityWithPhoto
-    {
-        public int Id { get; set; }
-        
+    public abstract class BaseEntityWithPhoto : BaseEntity
+    {        
         [Required]
         public string Name { get; set; }
         public string PhotoUrl { get; set; }

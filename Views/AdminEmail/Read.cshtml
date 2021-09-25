@@ -1,0 +1,22 @@
+@{
+  var letter = ViewData["Letter"] as ZeroXTeam.Entities.Contact;
+}
+
+<div class="container" style="margin-top: 5rem;">
+  <h3>Letter from @letter.Name</h3>
+  <small>Send At: @letter.CreatedAt</small>
+  <div style="margin-top: 3rem;">
+    <div class="mb-4">
+      <h5>Email:</h5>
+      <p>@letter.Mail</p>
+    </div>
+    <div class="mb-4">
+      <h5>Subject:</h5>
+      <p>@letter.Subject</p>
+    </div>
+    <div class="mb-4">
+      <h5>Content:</h5>
+      <p>@letter.Message</p>
+    </div>
+  </div>
+</div>

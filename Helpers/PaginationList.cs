@@ -8,7 +8,7 @@ using ZeroXTeam.Entities;
 
 namespace ZeroXTeam.Helpers
 {
-    public class PaginationList<T> : List<T> where T: BaseEntityWithPhoto
+    public class PaginationList<T> : List<T> where T: BaseEntity
     {
         public int CurrentPage { get; set; }
         public int ItemPerPage { get; set; }

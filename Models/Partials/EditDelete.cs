@@ -6,5 +6,6 @@ namespace ZeroXTeam.Models.Partials
         public string AspAction { get; set; }
         public int RouteId { get; set; }
         public string DeleteRoute { get; set; }
+        public bool HasEditPermission { get; set; } = true;
     }
 }

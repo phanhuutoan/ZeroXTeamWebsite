@@ -1,10 +1,13 @@
 @model ZeroXTeam.Models.Partials.EditDelete
 
 <div class="d-flex">
-  <a asp-action="@Model.AspAction" asp-controller="@Model.AspController"
-     asp-route-id="@Model.RouteId" class="btn btn-primary mr-2">
-    <i class="fas fa-pen" style="color: white"></i>
-  </a>
+  @if (Model.HasEditPermission)
+  {
+    <a asp-action="@Model.AspAction" asp-controller="@Model.AspController"
+      asp-route-id="@Model.RouteId" class="btn btn-primary mr-2">
+      <i class="fas fa-pen" style="color: white"></i>
+    </a>      
+  }
   <button class="btn btn-danger" onclick="btnDeleteClick(@Model.RouteId)">
     <i class="fas fa-trash" style="color: white"></i>
   </button>

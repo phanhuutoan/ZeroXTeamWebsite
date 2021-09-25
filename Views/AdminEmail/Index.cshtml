@@ -1,5 +1,97 @@
-<div class="container">
+@using ZeroXTeam.Helpers
+@using ZeroXTeam.Models.Partials
+
+@{
+  var contactLetters = ViewData["ContactLetters"] as PaginationList<ZeroXTeam.Entities.Contact>;
+  var isRead = ViewData["IsRead"];
+}
+
+<style>
+  .table td {
+    vertical-align: middle !important;
+  }
+
+  .table th {
+    vertical-align: middle !important;
+  }
+</style>
+
+<div class="container mt-4">
   <h2>
-    Emails
+    List emails
   </h2>
+    @if (!(bool)isRead)
+    {
+      <a class="btn btn-success mb-4" asp-action="Index" asp-controller="AdminEmail" asp-route-IsRead=true>
+        Switch to read mail
+      </a>        
+    } 
+    @if ((bool)isRead)
+    {
+      <a class="btn btn-primary mb-4" asp-action="Index" asp-controller="AdminEmail" asp-route-IsRead=false>
+        Switch to unread mail
+      </a>        
+    }
+  <div>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Emails</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var letter in contactLetters)
+    {
+      var editDeleteModel = new ZeroXTeam.Models.Partials.EditDelete()
+      {
+        RouteId = letter.Id,
+        DeleteRoute ="/admin/email/delete/",
+        HasEditPermission = false,
+      };
+
+      <tr>
+        <th scope="row">@letter?.Id</th>
+        <td>
+          <a asp-action="Read" asp-controller="AdminEmail" asp-route-id="@letter.Id"
+            target="blank">
+            @letter?.Name
+          </a>
+        </td>
+        <td style="max-width: 15rem;">@letter?.Mail</td>
+        <td>@letter?.Subject</td>
+        <td>@letter?.CreatedAt</td>
+        <td>
+
+          <partial name="components/_EditDelete"
+                   model="@editDeleteModel"></partial>
+
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+  </div>
 </div>
+@{
+  var paginationModel = new PaginationAndSort()
+  {
+    CurrentPage = contactLetters.CurrentPage,
+    ItemPerPage = contactLetters.ItemPerPage,
+    TotalPages = contactLetters.TotalPages,
+    SortBy = contactLetters.SortBy,
+    AspController= "AdminEmail",
+    SortOptions = new List<SortOption>()
+    {
+      new SortOption("Id", "By Id"),
+      new SortOption("Name", "By Name"),
+      new SortOption("CreatedAt", "By Created Date"),
+    }
+  };
+}
+<partial name="components/_PaginationAndSorting"
+         model="@paginationModel"></partial>

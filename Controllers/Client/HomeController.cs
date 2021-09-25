@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using ZeroXTeam.Models;
 using ZeroXTeam.Data;
 using ZeroXTeam.DTOs;
 using ZeroXTeam.Helpers;
+using ZeroXTeam.Entities;
 
 namespace ZeroXTeam.Controllers.Client
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
     {
 
     private readonly InformationRepository _informationRepo;
     private readonly MemberRepository _memberRepo;
     private ProjectRepository _projectRepo;
+    private readonly ContactRepository _contactRepo;
 
     public HomeController(
             InformationRepository informationRepository,
             MemberRepository memberRepository,
-            ProjectRepository projectRepository
+            ProjectRepository projectRepository,
+            ContactRepository contactRepository
         )
         {
             _informationRepo = informationRepository;
             _memberRepo = memberRepository;
             _projectRepo = projectRepository;
+            _contactRepo = contactRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -40,11 +40,22 @@ namespace ZeroXTeam.Controllers.Client
             return View();
         }
 
+        [HttpGet("about")]
+        public async Task<IActionResult> About()
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.About;
+            ViewData["Title"] = "Về chúng tôi";
+            ViewData["Information"] = await _informationRepo.GetInformation();
+            ViewData["Members"] = await _memberRepo.GetShowedItems();
+
+            return View("AboutUs");
+        }
+
         [HttpGet("projects")]
         public async Task<IActionResult> Projects(PaginationParams paginationParams)
         {
             ViewData["ActiveMenu"] = ActiveMenu.Project;
-            ViewData["Title"] = "Our Projects";
+            ViewData["Title"] = "Dự án";
             ViewData["Projects"] = await _projectRepo.GetAllProjects(paginationParams);
 
             return View("Projects");
@@ -56,10 +67,32 @@ namespace ZeroXTeam.Controllers.Client
             ViewData["ActiveMenu"] = ActiveMenu.Project;
             var project = await _projectRepo.GetProjectViewModelById(id);
             ViewData["Project"] = project;
-            ViewData["Title"] = "Project - " + project.Name;
+            ViewData["Title"] = "Dự án - " + project.Name;
 
             return View("ProjectDetail");
         }
+
+        [HttpGet("contact")]
+        public IActionResult Contact()
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Contact;
+            ViewData["Title"] = "Liên hệ";
+
+            return View("Contact");
+        }
+
+        [HttpPost("contact")]
+        public async Task<IActionResult> PostContact(Contact contact)
+        {
+            if (!ModelState.IsValid) return BadRequest("Bad request");
+
+            await _contactRepo.CreateContactLetter(contact);
+
+            TempData["SuccessMessage"] = "Send letter successfully.";
+
+            return RedirectToAction("contact");
+        }
+
 
         public IActionResult Privacy()
         {

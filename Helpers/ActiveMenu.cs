@@ -9,5 +9,7 @@ namespace ZeroXTeam.Helpers
         public const string Email = "email";
         public const string Recruitment = "recruitment";
         public const string Home = "home";
+        public const string About = "about";
+        public const string Contact = "contact";
     }
 }

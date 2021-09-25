@@ -1,4 +1,3 @@
-C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\appsettings.json
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\ZeroXTeam.exe
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\ZeroXTeam.deps.json
@@ -102,3 +101,7 @@ C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\Pro
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\components\_ClientPagination.cshtml.g.cs
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\components\_ClientSorting.cshtml.g.cs
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\ProjectDetail.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\AboutUs.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\appsettings.Local.json
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminEmail\Read.cshtml.g.cs
