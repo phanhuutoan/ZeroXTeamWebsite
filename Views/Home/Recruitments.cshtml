@@ -1,0 +1,93 @@
+@using ZeroXTeam.Entities
+@using ZeroXTeam.Models.Partials
+@using ZeroXTeam.Helpers
+
+@{
+  var recruitments = ViewData["Recruitments"] as PaginationList<Recruitment>;
+}
+
+<style>
+  .theme-button {
+    padding-right: 14px;
+    padding-left: 14px;
+    height: 38px;
+    transform: translateY(-2px);
+    line-height: 1px;
+  }
+</style>
+
+<!-- about breadcrumbs -->
+<nav id="breadcrumbs" class="breadcrumbs">
+  <div class="container page-wrapper">
+    <a href="/">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Tuyển dụng</span>
+  </div>
+</nav>
+<!-- /about breadcrumbs -->
+
+<!-- projects section -->
+<section class="w3l-projects py-5">
+    <div class="container principles-grids principles-grids1 py-lg-3">
+      <div class="header-section mb-5 text-center mx-auto">
+        <h6 class="sub-title mb-3">Member recruitment</h6>
+        <h3>Tuyển Dụng</h3>
+        <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+          Nulla mollis dapibus nunc, ut rhoncus
+          turpis sodales quis. Integer sit amet mattis quam.</p>
+      </div>
+      <div class="filter mb-3">
+        @{
+          var sortingModel = new ClientSorting()
+          {
+            AspAction = "GetRecruitments",
+            AspController = "Home",
+            CurrentPage = recruitments.CurrentPage,
+            SortBy = recruitments.SortBy,
+            SortingOptions = new List<SortingOption>()
+              {
+                new SortingOption("Name", "Tên của dự án"),
+                new SortingOption("LastDate", "Hạn cuối cùng apply"),
+                new SortingOption("CreatedAt", "Ngày tạo tin"),
+              }
+          };
+        }
+
+        <partial name="components/_ClientSorting"
+          model="@sortingModel"></partial>
+
+      </div>
+      <div class="grid-view mb-5">
+        @foreach (var recruit in recruitments)
+        {
+          <div class="grid-item">
+            <a asp-action="RecruitmentDetail" asp-controller="Home" asp-route-id="@recruit.Id" class="d-block zoom">
+              <img src="@recruit.PhotoUrl" alt="" class="img-fluid news-image" />
+              <div class="project-info">
+                <h4 class="mb-3">@recruit.Name</h4>
+                <p class="line-clamp-2 mb-3">
+                  Ngày đăng: @recruit.CreatedAt.ToString("dd/MM/yyyy") <br>
+                  Ngày hết hạn: @recruit.LastDay.ToString("dd/MM/yyyy")
+                </p>
+              </div>
+            </a>
+          </div>       
+        }
+      </div>
+
+      <!-- pagination -->
+      @{
+      var paginationModel = new ClientPagination() 
+      {
+        AspAction = "GetRecruitments",
+        AspController = "Home",
+        CurrentPage = recruitments.CurrentPage,
+        TotalPages = recruitments.TotalPages,
+        SortBy = recruitments.SortBy,
+      };
+    }
+
+    <partial name="components/_ClientPagination"
+        model="@paginationModel"></partial>
+
+    </div>
+</section>  
+<!-- /projects section -->

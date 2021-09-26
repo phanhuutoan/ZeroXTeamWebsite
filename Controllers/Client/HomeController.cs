@@ -6,28 +6,39 @@ using ZeroXTeam.Data;
 using ZeroXTeam.DTOs;
 using ZeroXTeam.Helpers;
 using ZeroXTeam.Entities;
+using ZeroXTeam.Services;
+using AutoMapper;
 
 namespace ZeroXTeam.Controllers.Client
 {
-  public class HomeController : Controller
+    public class HomeController : Controller
     {
 
     private readonly InformationRepository _informationRepo;
     private readonly MemberRepository _memberRepo;
     private ProjectRepository _projectRepo;
     private readonly ContactRepository _contactRepo;
+    private readonly RecruitmentRepository _recruitRepo;
+    private readonly PhotoUploadService _photoService;
+    private readonly IMapper _mapper;
 
     public HomeController(
             InformationRepository informationRepository,
             MemberRepository memberRepository,
             ProjectRepository projectRepository,
-            ContactRepository contactRepository
+            ContactRepository contactRepository,
+            RecruitmentRepository recruitmentRepository,
+            PhotoUploadService photoUploadService,
+            IMapper mapper
         )
         {
             _informationRepo = informationRepository;
             _memberRepo = memberRepository;
             _projectRepo = projectRepository;
             _contactRepo = contactRepository;
+            _recruitRepo = recruitmentRepository;
+            _photoService = photoUploadService;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -93,6 +104,51 @@ namespace ZeroXTeam.Controllers.Client
             return RedirectToAction("contact");
         }
 
+        [HttpGet("recruitments")]
+        public async Task<IActionResult> GetRecruitments(PaginationParams paginationParams)
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Recruitment;
+            ViewData["Title"] = "Tuyển dụng";
+
+            ViewData["Recruitments"] = await _recruitRepo.GetRecruitments(paginationParams);
+
+            return View("Recruitments");            
+        }
+
+        [HttpGet("recruitments/{id}")]
+        public async Task<IActionResult> RecruitmentDetail(int id)
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Recruitment;
+
+            var recruitment = await _recruitRepo.GetRecruitmentById(id);
+
+            ViewData["Recruitment"] = recruitment;
+            ViewData["Title"] = recruitment.Name;
+            
+            return View("RecruitmentDetail");            
+        }
+
+        [HttpPost("recruitments/{id}/apply")]
+        public async Task<IActionResult> Apply(ApplyViewModel applyViewModel, int id)
+        {
+            if (!ModelState.IsValid) return BadRequest("Invalid Data");
+
+            var appliedPerson = _mapper.Map<AppliedPerson>(applyViewModel);
+
+            if (applyViewModel.CvFile != null)
+            {
+                var uploadResult = await _photoService.UploadFile(applyViewModel.CvFile);
+                appliedPerson.CvUrl = uploadResult.FileUrl;
+                appliedPerson.PublicId = uploadResult.PublicId;
+            }
+
+            await _recruitRepo.ApplyToRecruitment(id, appliedPerson);
+
+            TempData["Message"] = "Bạn đã thành công apply, chờ liên hệ của chúng tôi nhé :D";
+
+            return RedirectToAction("RecruitmentDetail", new {id = id});
+
+        }
 
         public IActionResult Privacy()
         {

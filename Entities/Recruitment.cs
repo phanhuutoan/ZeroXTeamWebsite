@@ -14,6 +14,6 @@ namespace ZeroXTeam.Entities
         public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime LastDay { get; set; }
-        public ICollection<AppliedPerson> AppliedPeople { get; set; }
+        public List<AppliedPerson> AppliedPeople { get; set; } = new List<AppliedPerson>();
     }
 }

@@ -105,3 +105,6 @@ C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\Abo
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\bin\Debug\net5.0\appsettings.Local.json
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\AdminEmail\Read.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\Recruitments.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\RecruitmentDetail.cshtml.g.cs
+C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Shared\components\_ReadOnlyRichText.cshtml.g.cs

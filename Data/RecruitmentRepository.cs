@@ -5,18 +5,26 @@ using Microsoft.EntityFrameworkCore;
 using ZeroXTeam.DTOs;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Helpers;
+using ZeroXTeam.Services;
 
 namespace ZeroXTeam.Data
 {
   public class RecruitmentRepository : RepositoryBase
   {
-    public RecruitmentRepository(DataContext context) : base(context)
+    private readonly PhotoUploadService _photoService;
+
+    public RecruitmentRepository(
+        DataContext context, 
+        PhotoUploadService photoUploadService) : base(context)
     {
+        _photoService =photoUploadService;
     }
 
     public async Task<Recruitment> GetRecruitmentById(int id)
     {
-        return await _context.Recruitment.FindAsync(id);
+        return await _context.Recruitment
+            .Include(re => re.AppliedPeople)
+            .SingleOrDefaultAsync(re => re.Id == id);
     }
 
     public async Task<PaginationList<Recruitment>> GetRecruitments(PaginationParams paginationParams)
@@ -100,6 +108,34 @@ namespace ZeroXTeam.Data
             PageNumber = 1
         }, true);
 
+    }
+
+    public async Task<bool> ApplyToRecruitment(int recruitmentId, AppliedPerson appliedPerson)
+    {
+        var recruitment = await GetRecruitmentById(recruitmentId);
+
+        if (recruitment.AppliedPeople == null) {
+            recruitment.AppliedPeople = new List<AppliedPerson>();
+        }
+
+        recruitment.AppliedPeople.Add(appliedPerson);
+
+        return await SaveChangesAsync();
+    }
+
+    public async Task<bool> RemoveAppliedPerson(int appliedId, int recruitmentId)
+    {
+        var recruitment = await GetRecruitmentById(recruitmentId);
+        var appliedPerson = recruitment.AppliedPeople.Find(ele => ele.Id == appliedId);
+
+        if (appliedPerson.PublicId != null) 
+        {
+            await _photoService.DeleteImage(appliedPerson.PublicId);
+        }
+
+        recruitment.AppliedPeople.Remove(appliedPerson);
+
+        return await SaveChangesAsync();
     }
   }
 }

@@ -155,7 +155,9 @@
           @foreach (var project in showedProjects)
           {
             <div class="grid-item">
-              <a href="#project-single.html" class="d-block zoom">
+              <a asp-action="ProjectDetail" asp-controller="Home" 
+                asp-route-id="@project.Id" 
+                class="d-block zoom">
                 <img src="@project.PhotoUrl" alt="photo" class="img-fluid news-image" />
                 <div class="project-info">
                   <h4 class="mb-3">@project.Name</h4>

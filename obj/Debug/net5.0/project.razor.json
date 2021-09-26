@@ -15639,6 +15639,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_ReadOnlyRichText.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_ReadOnlyRichText.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\AboutUs.cshtml",
       "TargetPath": "Views\\Home\\AboutUs.cshtml",
       "FileKind": "mvc"
@@ -15704,6 +15709,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Recruitments.cshtml",
+      "TargetPath": "Views\\Home\\Recruitments.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\ProjectDetail.cshtml",
       "TargetPath": "Views\\Home\\ProjectDetail.cshtml",
       "FileKind": "mvc"
@@ -15761,6 +15771,11 @@
     {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\_LayoutAdmin.cshtml",
       "TargetPath": "Views\\Shared\\_LayoutAdmin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\RecruitmentDetail.cshtml",
+      "TargetPath": "Views\\Home\\RecruitmentDetail.cshtml",
       "FileKind": "mvc"
     },
     {

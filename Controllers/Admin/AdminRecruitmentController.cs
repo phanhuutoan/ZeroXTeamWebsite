@@ -126,6 +126,14 @@ namespace ZeroXTeam.Controllers.Admin
 
             return View("Index");
         }
+
+        [HttpPost("{recruitmentId}/delete-apply/{id}")]
+        public async Task<IActionResult> DeleteApply(int recruitmentId, int id)
+        {            
+            await _recruitRepo.RemoveAppliedPerson(id, recruitmentId);
+
+            return RedirectToAction("GetEdit", new {id = recruitmentId});
+        }
     }
 
 }

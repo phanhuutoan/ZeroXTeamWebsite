@@ -35,7 +35,7 @@
   };
 }
 
-<div class="container" style="margin-top: 3rem">
+<div class="container" style="margin-top: 3rem" id="recruit">
   <div class="row">
     <form action="@formAction" method="POST" class="col-md-6 col-sm-12" enctype="multipart/form-data" >
       <h3> @title </h3>
@@ -71,7 +71,7 @@
         <input type="text" asp-for="Experience" class="form-control" value="@recruitment?.Experience">
       </div>
       <div class="form-group">
-        <label for="Localtion">Localtion</label>
+        <label for="Localtion">Location</label>
         <input type="text" asp-for="Location" class="form-control" value="@recruitment?.Location">
       </div>
       <div class="form-group">
@@ -98,11 +98,45 @@
     @if(isEdit)
     {
       <div class="col-md-6 col-sm-12">
-        <div>
+        <div class="mb-4">
           <h3> Photo: </h3>
           <img src="@recruitment?.PhotoUrl" alt="photo" class="image-thumbnail" style="height: 20rem;">
         </div>
+        <h4>Applied members</h4>
+        <div class="row">
+          @foreach (var person in recruitment.AppliedPeople)
+          {
+            var editDeleteModel = new ZeroXTeam.Models.Partials.EditDelete()
+            {
+              RouteId = person.Id,
+              DeleteRoute = "/admin/recruitment/"+ recruitment.Id + "/delete-apply/",
+              HasEditPermission = false,
+            };
+
+            <div class="col-sm-6">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">@person.Name</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">@person.Email 
+                    <small>(DOB: @person.DateOfBirth.ToString("dd/MM/yyyy"))</small></h6>
+                  <p class="card-text">
+                    @person.AboutMe
+                  </p>
+                  <p>@person.Phone</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <a href="@person.CvUrl" target="blank" class="btn btn-primary mr-2 mb-0">CV</a>
+
+                    <partial name="components/_EditDelete"
+                    model="@editDeleteModel"></partial>
+                  </div>
+                </div>
+              </div>
+            </div>              
+          }
+        </div>
+
       </div>
+
     }
   </div>
 </div>

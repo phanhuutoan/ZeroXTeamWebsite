@@ -1,0 +1,25 @@
+@model ZeroXTeam.Models.Partials.ReadOnlyRichTextEditor;
+
+<div id="@Model.EditorId">
+</div>
+<input type="hidden" value="@Model.FormValue" name="@Model.EditorId">
+<!-- Initialize Quill editor -->
+<script>
+  dynamicVar["quill" + "@Model.EditorId"] = new Quill('#@Model.EditorId', {
+    theme: 'snow',
+    modules: {
+      toolbar: null
+    },
+    readOnly: true
+  });
+
+  if (document.querySelector("[name=@Model.EditorId]").value) {
+    dynamicVar["quill" + "@Model.EditorId"].setContents(
+      JSON.parse(document.querySelector("[name=@Model.EditorId]").value)
+    );
+  }
+
+  dynamicVar["quill" + "@Model.EditorId"].on('editor-change', () => {
+    document.querySelector("[name=@Model.EditorId]").value = JSON.stringify(dynamicVar["quill" + "@Model.EditorId"].getContents().ops)
+  })
+</script>

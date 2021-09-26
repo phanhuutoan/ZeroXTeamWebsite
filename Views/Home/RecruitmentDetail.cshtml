@@ -1,0 +1,126 @@
+@using ZeroXTeam.Entities
+@using ZeroXTeam.Models.Partials
+@model ZeroXTeam.Models.ApplyViewModel
+
+@{
+  var recruitment = ViewData["Recruitment"] as Recruitment;
+}
+
+<!-- services breadcrumbs -->
+<nav id="breadcrumbs" class="breadcrumbs">
+  <div class="container page-wrapper">
+    <a href="index.html">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Tuyển dụng</span>
+  </div>
+</nav>
+<!-- /services breadcrumbs -->
+<section class="w3l-services1 py-5" id="services">
+  <div class="container py-lg-3">
+    <div class="header-section mb-5 text-center">
+      <h2>@recruitment.Name</h2>
+    </div>
+    @if (TempData["Message"] != null)
+    {
+      <div class="alert alert-success">
+        @TempData["Message"]
+      </div>        
+    }
+    <div class="d-flex justify-content-between mb-4">
+      <p>Ngày Tạo: @recruitment.CreatedAt.ToString("dd/MM/yyyy")</p>
+      <p>Hạn Chót: @recruitment.LastDay.ToString("dd/MM/yyyy")</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h3>1. Mô tả công việc</h3>
+        
+        @{
+          var editorDescModel = new ReadOnlyRichTextEditor() 
+          {
+            EditorId="description",
+            FormValue= recruitment.Description
+          };
+        }
+        <partial name="components/_ReadOnlyRichText"
+            model="@editorDescModel"></partial>
+
+        <p>Địa điểm: <strong> @recruitment.Location </strong> </p>
+
+      </div>
+      <div class="col-lg-6 mt-lg-0 mt-5">
+        <img src="@recruitment.PhotoUrl" class="img-curve img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="w3l-services2" id="services">
+  <div class="mobile-info py-5">
+    <div class="container py-lg-3">
+      <div>
+        <h3 class="mb-4">2. Yêu cầu công việc</h3>
+        @{
+          var editorRequireModel = new ReadOnlyRichTextEditor() 
+          {
+            EditorId="require",
+            FormValue= recruitment.Requirements
+          };
+        }
+        <partial name="components/_ReadOnlyRichText"
+            model="@editorRequireModel"></partial>
+        
+        @if (!string.IsNullOrEmpty(recruitment.Experience))
+        {
+          <h6>Kinh nghiệm yêu cầu: <strong>@recruitment.Experience</strong> </h6>            
+        }
+      </div>
+    </div>
+  </div>
+</section>
+<section class="w3l-services3">
+  <div class="about-inner-cont py-5">
+    <div class="container py-lg-5">
+      <div>
+        <h3 class="mb-4">3. Quyền lợi</h3>
+        @{
+          var editorBenefitModel = new ReadOnlyRichTextEditor() 
+          {
+            EditorId="benefit",
+            FormValue= recruitment.Benefits
+          };
+        }
+        <partial name="components/_ReadOnlyRichText"
+            model="@editorBenefitModel"></partial>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="container w3l-contact" id="apply">
+  <div class="contact-form" style="box-shadow: none;">
+    <div class="header-section mb-4 text-left">
+      <h4>4. Apply Now</h4>
+      <p style="margin: 1rem 0">Chúng tôi chờ thư của bạn</p>
+    </div>
+    <form action="/recruitments/@recruitment.Id/apply" method="POST" enctype="multipart/form-data">
+      <div class="main-input">
+        <input type="text" asp-for="Name" name="Name" placeholder="Enter your name" class="contact-input" required />
+        <input type="email" asp-for="Email" name="Email" placeholder="Enter your mail" class="contact-input" required />
+        <input type="text" asp-for="Phone" name="Phone" placeholder="Enter your phone number" class="contact-input" required />
+        <textarea asp-for="AboutMe" class="contact-textarea contact-input" 
+          name="AboutMe" placeholder="Some thing about you" required=""></textarea>
+        <div class="form-group">
+          <label for="DateOfBirth">Date of birth</label>
+          <input asp-for="DateOfBirth" type="date" name="DateOfBirth" 
+                placeholder="Enter your date of birth" class="contact-input" required />
+        </div>
+        <div class="form-group">
+          <label for="CV">Upload your CV</label>
+          <input asp-for="CvFile" type="file" accept="image/png, image/gif, image/jpeg" 
+                 name="CvFile" class="contact-input" required />
+        </div>
+
+      </div>
+      <div class="text-right">
+        <button class="btn-primary btn theme-button">Gửi</button>
+      </div>
+    </form>
+  </div>
+</section>

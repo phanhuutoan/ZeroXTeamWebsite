@@ -12,6 +12,12 @@ namespace ZeroXTeam.Services
         public string ImageUrl { get; set; }
     }
 
+    public class FileUploadResult 
+    {
+        public string PublicId { get; set; }
+        public string FileUrl { get; set; }
+    }
+
     public class PhotoUploadService
     {
         private readonly IConfiguration _config;
@@ -56,6 +62,29 @@ namespace ZeroXTeam.Services
             {
                 PublicId = result.PublicId,
                 ImageUrl = result?.Url?.AbsoluteUri
+            };
+        }
+
+        public async Task<FileUploadResult> UploadFile(IFormFile file) 
+        {
+            var stream = file.OpenReadStream();
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(file.FileName, stream),
+            };
+
+            var result = await _cloudinary.UploadAsync(uploadParams);
+
+            if (result.Error != null)
+            {
+                return null;
+            }
+
+            return new FileUploadResult()
+            {
+                PublicId = result.PublicId,
+                FileUrl = result?.Url?.AbsoluteUri
             };
         }
 

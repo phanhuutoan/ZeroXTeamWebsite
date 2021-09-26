@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZeroXTeam.Data;
 
 namespace ZeroXTeam.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210925135704_ChangeAppliedPersonDB")]
+    partial class ChangeAppliedPersonDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,6 +65,9 @@ namespace ZeroXTeam.Migrations
                     b.Property<string>("AboutMe")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CvUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
@@ -73,6 +78,9 @@ namespace ZeroXTeam.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RecruitmentId")
