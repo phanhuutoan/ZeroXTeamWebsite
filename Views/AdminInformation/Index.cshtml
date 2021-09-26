@@ -1,7 +1,7 @@
 @{
   var informationData = ViewData["InformationData"] as ZeroXTeam.Models.InformationViewModel;
-  var heroUrl = informationData.HeroUrl == null ? "/images/placeholder.png" : informationData.HeroUrl;
-  var aboutUrl = informationData.AboutUrl == null ? "/images/placeholder.png" : informationData.AboutUrl;
+  var heroUrl = informationData?.HeroUrl == null ? "/images/placeholder.png" : informationData?.HeroUrl;
+  var aboutUrl = informationData?.AboutUrl == null ? "/images/placeholder.png" : informationData?.AboutUrl;
 }
 
 @model ZeroXTeam.DTOs.InformationDtos

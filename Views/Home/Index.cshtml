@@ -7,7 +7,7 @@
     ViewData["ActiveMenu"] = ActiveMenu.Home;
     
     var information = ViewData["Information"] as HomePageInformation;
-    var heroUrl = Html.Raw(information.HeroUrl);
+    var heroUrl = Html.Raw(information?.HeroUrl);
     var showedProjects = ViewData["ShowedProjects"] as List<Project>;
 }
   <!--/header-->
@@ -20,9 +20,9 @@
         <div class="row align-items-center">
           <div class="col-md-6 col-sm-8 content-left">
             <h3 class="mb-3">
-              @information.Title
+              @information?.Title
             </h3>
-            <p class="mb-lg-5 mb-4"> @information.SubTitle </p>
+            <p class="mb-lg-5 mb-4"> @information?.SubTitle </p>
             <a href="about.html" class="btn btn-outline-primary theme-button">Get Started</a>
           </div>
         </div>

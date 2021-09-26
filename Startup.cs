@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,10 +19,12 @@ namespace ZeroXTeam
     public class Startup
     {
     private IConfiguration _config;
+    private IWebHostEnvironment _env;
 
-    public Startup(IConfiguration config)
+    public Startup(IConfiguration config, IWebHostEnvironment env)
         {
             _config = config;
+            _env = env;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -34,7 +37,8 @@ namespace ZeroXTeam
                     opt.LoginPath="/admin";
                 });
             services.AddDbContext<DataContext>(opt => {
-                opt.UseSqlite(_config.GetConnectionString("Default"));
+                //opt.UseSqlite(_config.GetConnectionString("Default"));
+                opt.UseNpgsql(_config.GetConnectionString("Default"));
             });
         }
 
