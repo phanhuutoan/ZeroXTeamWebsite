@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ZeroXTeam.Data;
 using ZeroXTeam.Helpers;
+using Microsoft.Extensions.Logging;
 
 namespace ZeroXTeam
 {
