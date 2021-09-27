@@ -11,6 +11,7 @@ services:
       - ASPNETCORE_ENVIRONMENT="Development"
     volumes:
       - .:/home/app
+      - /c/temp-keys:/root/.aspnet/DataProtection-Keys
     depends_on:
       - postgres
     command:

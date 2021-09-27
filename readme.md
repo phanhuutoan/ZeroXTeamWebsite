@@ -1,4 +1,4 @@
-#### 1. Làm sao để chạy cái nồi này ???
+#### 1. Làm sao để chạy cái nồi này ở development ???
 
 Vào cái trang củ lil này: [https://docs.docker.com/desktop/windows/install/] install docker
 Cài đặt docker
