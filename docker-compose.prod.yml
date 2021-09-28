@@ -1,0 +1,38 @@
+version: "2.0"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - postgres
+    volumes:
+      - /app/key:/root/.aspnet/DataProtection-Keys
+    command:
+      [
+        "./scripts/wait-for-it.sh",
+        "postgres:5432",
+        "--",
+        "dotnet",
+        "ZeroXTeam.dll",
+      ]
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: Postgres1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ZeroXTeam
+    volumes:
+      - /data/_pgData:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
