@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 5000:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     depends_on:
@@ -15,7 +15,8 @@ services:
     command:
       [
         "./scripts/wait-for-it.sh",
-        "postgres:5432",
+        "--host=postgres",
+        "--port=5432",
         "--",
         "dotnet",
         "ZeroXTeam.dll",
@@ -24,12 +25,14 @@ services:
   postgres:
     image: postgres
     restart: always
+    ports:
+      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: Postgres1234
-      POSTGRES_USER: postgres
-      POSTGRES_DB: ZeroXTeam
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?err}
+      POSTGRES_USER: ${DB_USER:?err}
+      POSTGRES_DB: ${DB_NAME:?err}
     volumes:
-      - /data/_pgData:/var/lib/postgresql/data
+      - /app/_pgData:/var/lib/postgresql/data
 
   adminer:
     image: adminer
