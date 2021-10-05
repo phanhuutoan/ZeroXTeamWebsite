@@ -1,0 +1,169 @@
+@using ZeroXTeam.Entities
+@using ZeroXTeam.Models.Partials
+@using ZeroXTeam.Helpers
+
+@{
+  var newestBlogs = ViewData["NewestBlogs"] as List<Blog>;
+  var remainingBlogs = ViewData["RemainingBlogs"] as PaginationList<Blog>;
+  var random = new Random();
+}
+
+<nav id="breadcrumbs" class="breadcrumbs">
+  <div class="container page-wrapper">
+    <a href="/">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Bài viết</span>
+  </div>
+</nav>
+<!-- /about breadcrumbs -->
+
+<style>
+  .remaining__blog {
+    display: flex;
+    margin-bottom: 2rem;
+    
+    box-shadow: -2px 9px 15px 0px rgba(0,0,0,0.1);
+    transition: all .2s;
+    border-radius: .5rem;
+    position: relative;
+  }
+
+  .remaining__blog:hover {
+    box-shadow: -2px 9px 22px 0px rgba(0,0,0,0.25);
+  }
+
+  .remaining__views {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .remaining__view i {
+    color: #dc4f72;
+    font-size: 2rem;
+  }
+
+  .remaining__blog img {
+    height: 13rem;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+  }
+
+  .remaining__content{
+    padding: 2rem 1.7rem;
+    width: 100%;
+  }
+
+  .remaining__content h4 {
+    color: #dc4f72;
+  }
+
+  .remaining__content h6 {
+    color: #777
+  }
+
+  #blog .theme-button {
+    width: 10rem;
+  }
+
+  #blog select {
+    height: 3.1rem;
+    width: 100%;
+  }
+
+</style>
+<!-- projects section -->
+<section class="w3l-projects py-5">
+    <div class="container principles-grids principles-grids1 py-lg-3">
+      <div class="header-section mb-5 text-center mx-auto">
+        <h6 class="sub-title mb-3 p-3">Chia sẻ kiến thức, kinh nghiệm</h6>
+        <h1>Bài viết</h1>
+        <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+          Nulla mollis dapibus nunc, ut rhoncus
+          turpis sodales quis. Integer sit amet mattis quam.</p>
+      </div>
+      <div class="blog-container mb-5">
+
+        @foreach (var blog in newestBlogs)
+        {
+          <div class="blog-item">
+            <a href="/blogs/@blog.Id" class="zoom">
+              <img src="@blog.PhotoUrl" alt="" class="img-fluid" />
+              <div class="card-info p-3">
+                <h4 class="mb-3">@blog.Name</h4>
+                <p class="line-clamp-2 mb-3">@blog.Brief</p>
+                <h5>@blog.Author (Ngày xuất bản: @blog.CreatedAt.ToString("dd/MM/yyyy"))</h5>
+              </div>
+            </a>
+        </div>
+        }
+      </div>
+    </div>
+    <!-- /projects section -->
+    
+    <div class="container principles-grids principles-grids1 py-lg-3" id="blog">
+      <hr>
+      <div class="header-section mb-5 text-center mx-auto">
+        <h1 class="mt-4">Các bài viết khác</h1>
+        <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+          Nulla mollis dapibus nunc, ut rhoncus
+          turpis sodales quis. Integer sit amet mattis quam.</p>
+      </div>
+
+        @{
+          var sortingModel = new ClientSorting()
+          {
+            AspAction = "GetBlogs",
+            AspController = "Home",
+            CurrentPage = remainingBlogs.CurrentPage,
+            SortBy = remainingBlogs.SortBy,
+            SortingOptions = new List<SortingOption>()
+              {
+                new SortingOption("Name", "Tên của dự án"),
+                new SortingOption("CreatedAt", "Ngày xuất bản"),
+                new SortingOption("UpdatedAt", "Ngày cập nhật"),
+                new SortingOption("Author", "Tác giả"),
+              }
+          };
+        }
+        <partial name="components/_ClientSorting"
+          model="@sortingModel"></partial>
+         
+      <div class="remaining">
+        @foreach (var blog in remainingBlogs)
+        {
+
+          <a href="/blogs/@blog.Id">
+            <div class="remaining__blog">
+              <div class="remaining__views">
+                <span class="mr-2"> @blog.Views </span>
+                <i class="fa fa-eye"></i>
+              </div>
+              <img src="@blog.PhotoUrl" alt="photo url">
+              <div class="remaining__content">
+                <h4 class="mb-3">@blog.Name</h4>
+                <p class="line-clamp-2 mb-3">@blog.Brief</p>
+                <h6>Tác giả: <strong>@blog.Author</strong> <br> (Ngày xuất bản: @blog.CreatedAt.ToString("dd/MM/yyyy"))</h6>
+              </div>
+            </div>  
+          </a>
+        }
+      </div>
+        </div>
+        
+      @{
+      var paginationModel = new ClientPagination() 
+        {
+          AspAction = "GetBlogs",
+          AspController = "Home",
+          CurrentPage = remainingBlogs.CurrentPage,
+          TotalPages = remainingBlogs.TotalPages,
+          SortBy = remainingBlogs.SortBy,
+        };
+      }
+
+      <partial name="components/_ClientPagination"
+          model="@paginationModel"></partial>
+    </div>
+</section>
+
+
+

@@ -8,6 +8,8 @@ using ZeroXTeam.Helpers;
 using ZeroXTeam.Entities;
 using ZeroXTeam.Services;
 using AutoMapper;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ZeroXTeam.Controllers.Client
 {
@@ -20,6 +22,7 @@ namespace ZeroXTeam.Controllers.Client
     private readonly ContactRepository _contactRepo;
     private readonly RecruitmentRepository _recruitRepo;
     private readonly PhotoUploadService _photoService;
+    private readonly BlogRepository _blogRepo;
     private readonly IMapper _mapper;
 
     public HomeController(
@@ -29,6 +32,7 @@ namespace ZeroXTeam.Controllers.Client
             ContactRepository contactRepository,
             RecruitmentRepository recruitmentRepository,
             PhotoUploadService photoUploadService,
+            BlogRepository blogRepository,
             IMapper mapper
         )
         {
@@ -38,6 +42,7 @@ namespace ZeroXTeam.Controllers.Client
             _contactRepo = contactRepository;
             _recruitRepo = recruitmentRepository;
             _photoService = photoUploadService;
+            _blogRepo = blogRepository;
             _mapper = mapper;
         }
 
@@ -148,6 +153,69 @@ namespace ZeroXTeam.Controllers.Client
 
             return RedirectToAction("RecruitmentDetail", new {id = id});
 
+        }
+
+        [HttpGet("blogs")]
+        public async Task<IActionResult> GetBlogs(PaginationParams paginationParams)
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Blog;
+            ViewData["Title"] = "Bài viết mới nhất";
+
+            var newestBlogs = await _blogRepo.GetNewestBlogs();
+            var excludedIds = newestBlogs.Select(item => item.Id).ToList();
+
+            var otherBlogs = await _blogRepo.GetBlogWithoutSpecificIds(paginationParams, excludedIds);
+
+            ViewData["NewestBlogs"] = newestBlogs;
+            ViewData["RemainingBlogs"] = otherBlogs;
+
+            return View("Blogs");
+        }
+
+        [HttpGet("blogs/{id}")]
+        public async Task<IActionResult> GetBlogDetail(int id)
+        {
+            ViewData["ActiveMenu"] = ActiveMenu.Blog;
+
+            var seeMuchParams = new PaginationParams()
+            {
+                ItemPerPage = 4,
+                PageNumber = 1,
+                SortBy = "Views"
+            };
+
+            var latestBlogParams = new PaginationParams()
+            {
+                ItemPerPage = 6,
+                PageNumber = 1,
+                SortBy = "CreatedAt"
+            };
+
+            var blog = await _blogRepo.GetBlogById(id);
+
+            await _blogRepo.UpdateBlogViews(id);
+
+            var remainingBlogs = await _blogRepo.GetBlogWithoutSpecificIds(seeMuchParams, new List<int>() {id});
+            var latestBlog = await _blogRepo.GetBlogWithoutSpecificIds(latestBlogParams, new List<int>() {id});
+
+            ViewData["Blog"] = blog;
+            ViewData["SeeMuchBlogs"] = remainingBlogs;
+            ViewData["LatestBlogs"] = latestBlog;
+
+            ViewData["Title"] = "Bài viết - " + blog.Name;            
+
+
+            return View("BlogDetail");
+        }
+
+        [HttpPost("blogs/{id}/add-comment")]
+        public async Task<IActionResult> AddComment(CommentViewModel commentViewModel, int id) 
+        {   
+            var comment = _mapper.Map<UserComment>(commentViewModel);
+
+            await _blogRepo.AddComment(comment, id);
+
+            return RedirectToAction("GetBlogDetail", new { id = id });
         }
 
         public IActionResult Privacy()

@@ -1,11 +1,11 @@
 @model ZeroXTeam.Models.Partials.ClientSorting;
 
-<form class="filter mb-5" method="GET" 
+<form class="filter mb-5 d-flex align-items-center" method="GET" 
   asp-action="@Model.AspAction" 
   asp-controller="@Model.AspController">
 
     <input type="hidden" name="PageNumber" value="@Model.CurrentPage">
-    <select class="form-control" name="SortBy">
+    <select class="form-control mr-2" name="SortBy">
       <option value="sorting">Được sắp xếp bởi: </option>
       @foreach (var option in Model.SortingOptions)
 
@@ -16,6 +16,6 @@
         <option value="@option.Value" selected="@isSelected"> @option.Display </option>          
       }
     </select>
-    <button class="btn btn-primary theme-button">Sắp xếp</button>
+    <button class="btn btn-primary theme-button" style="transform: translateY(-1px);">Sắp xếp</button>
 
 </form>

@@ -8,6 +8,7 @@
   var activeAbout = activeMenu == ActiveMenu.About ? "active" : "";
   var activeContact = activeMenu == ActiveMenu.Contact ? "active" : "";
   var activeRecruit = activeMenu == ActiveMenu.Recruitment ? "active" : "";
+  var activeBlog = activeMenu == ActiveMenu.Blog ? "active" : "";
 }
 
 <!doctype html>
@@ -17,6 +18,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="learning, zerox, zeroxteam, community, Đà Nẵng, Cộng đồng Đà nẵng, Zerox Đà nẵng, IT, công nghệ thông tin">
+  <meta name="googlebot" content="learning, zerox, zeroxteam, community, Đà Nẵng, Cộng đồng Đà nẵng, Zerox Đà nẵng, IT, công nghệ thông tin">
+  <meta name="description" content="ZeroX Team là một cộng đồng nơi mà mọi người cùng nhau học và giúp đỡ nhau trong lập trình, team có các sản phẩm nền tảng khác như SchoolX và HiCode." />
 
   <title> ZeroX - @ViewData["Title"] </title>
 
@@ -69,6 +73,9 @@
             </li>
             <li class="nav-item @activeRecruit">
               <a class="nav-link" href="/recruitments">Tuyển dụng</a>
+            </li>
+            <li class="nav-item @activeBlog">
+              <a class="nav-link" href="/blogs">Bài viết</a>
             </li>
             <li class="nav-item @activeContact">
               <a class="nav-link" href="/contact">Liên hệ</a>

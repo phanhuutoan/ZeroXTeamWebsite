@@ -113,7 +113,15 @@ namespace ZeroXTeam.Controllers.Admin
             await _blogRepo.DeleteBlog(blog);
 
             return RedirectToAction("Index");
-        }        
+        }     
+
+        [HttpPost("{blogId}/delete-comment/{id}")]
+        public async Task<IActionResult> DeleteComment(int id, int blogId)
+        {
+            await _blogRepo.RemoveComment(id, blogId);
+
+            return RedirectToAction("GetEdit", new { id = blogId });
+        }     
 
         [HttpGet("search")]
         public async Task<IActionResult> GetSearch(string searchString)

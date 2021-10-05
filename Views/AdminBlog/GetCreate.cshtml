@@ -61,7 +61,32 @@
           <h3> Avatar: </h3>
           <img src="@blog?.PhotoUrl" alt="photo" class="image-thumbnail" style="height: 20rem;">
         </div>
+        <hr>
+        <div class="row">
+        @foreach (var cmt in blog.UserComments)
+          {
+            var editDeleteModel = new ZeroXTeam.Models.Partials.EditDelete()
+            {
+              RouteId = cmt.Id,
+              DeleteRoute = "/admin/blogs/"+ blog.Id + "/delete-comment/",
+              HasEditPermission = false,
+            };
+
+            <div class="card col-sm-6" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"> @cmt.Name </h5>
+                <h6 class="card-subtitle mb-2 text-muted">@cmt.Email - @cmt.CreatedAt.ToString("dd/MM/yyyy")</h6>
+                <p class="card-text">@cmt.Content</p>
+                <div class="d-flex align-items-center justify-content-between">
+                    <partial name="components/_EditDelete"
+                    model="@editDeleteModel"></partial>
+                  </div>
+              </div>
+            </div>            
+          }
+        </div>
       </div>
+      
     }
   </div>
 </div>
