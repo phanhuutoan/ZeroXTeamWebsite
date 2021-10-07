@@ -2,3 +2,5 @@ appsettings.Production.json
 _pgData
 out
 .env
+
+omnisharp.json

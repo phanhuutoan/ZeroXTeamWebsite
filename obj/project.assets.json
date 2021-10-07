@@ -2925,19 +2925,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Toan\\.nuget\\packages\\": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj",
+      "projectUniqueName": "/home/app/ZeroXTeam.csproj",
       "projectName": "ZeroXTeam",
-      "projectPath": "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj",
-      "packagesPath": "C:\\Users\\Toan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\obj\\",
+      "projectPath": "/home/app/ZeroXTeam.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/home/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Toan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -3018,7 +3018,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
       }
     }
   }

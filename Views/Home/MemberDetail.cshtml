@@ -1,0 +1,98 @@
+@using ZeroXTeam.Entities
+
+@{
+  var member = ViewData["Member"] as Member;
+}
+
+<!-- about breadcrumbs -->
+<nav id="breadcrumbs" class="breadcrumbs">
+  <div class="container page-wrapper">
+    <a href="/">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Thành viên zerox</span>
+  </div>
+</nav>
+<!-- /about breadcrumbs -->
+
+<style>
+  .profile-icon li.icon {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    color: #444;
+    padding: 1rem;
+    background: #12c8ff;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .profile-icon li.icon:last-child {
+    background: #2b8bf0;
+  }
+
+  .profile-icon i {
+    color: white;
+    font-size: 1.6rem;
+  }
+</style>
+
+<section class="w3l-member-detail py-5" id="about">
+  <div id="content-with-photo4-block" class="pt-5">
+    <div class="container py-md-3">
+      <div class="header-section mb-5 text-center">
+        <h2>Hồ sơ nhân sự</h2>
+      </div>
+      <div class="cwp4-two row py-5">
+        <div class="cwp4-image col-md-4 col-sm-12 offset-2">
+          <img src="@member.PhotoUrl" class="img-curve img-fluid" alt="" />
+        </div>
+        <div class="cwp4-text col-md-5 col-sm-12">
+            <h3>@member.Name</h3>
+            <i class="fa fa-user" style="color:#e72026;"><p class="p-user">@member.TeamTitles</p></i>
+            <i class="fa fa-birthday-cake" style=" color:#e72026; margin-left: 50px; font-size: 14px; "><p class="p-user">@member.DateOfBirth.ToString("dd/MM/yyyy")</p></i>
+            <i class="fa fa-calendar" style="color:#e72026; display: block; margin-top: -10px;" ><p class="p-user">@member.JoinedAt.ToString("dd/MM/yyyy")</p></i>
+            <p>@member.Bio</p>          
+            <ul class="social-list">
+            <div class="profile-icon d-flex">
+              <li class="mr-4 icon">
+                <a href="@member?.Facebook" class="facebook" target="blank">
+                <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li class="icon">
+                <a href="mailto:@member?.Email?Subject=Hello" class="twitter" target="blank"> 
+                <i class="fa fa-envelope-open-o"></i>
+              </a>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="w3l-projects py-5">
+  <div class="container principles-grids principles-grids1 py-lg-3">
+    <div class="header-section mb-5 text-center mx-auto">
+      <h3>Dự án tham gia</h3>
+      <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Nulla mollis dapibus nunc, ut rhoncus
+        turpis sodales quis. Integer sit amet mattis quam.</p>
+    </div>
+    <div class="grid-view mb-5">
+      @foreach (var project in member.ProjectJoined)
+      {
+        <div class="grid-item">
+          <a href="/projects/@project.Id" class="d-block zoom">
+            <img src="@project.PhotoUrl" alt="" class="img-fluid news-image" />
+            <div class="card-info">
+              <h4 class="mb-3">@project.Name</h4>
+              <p class="line-clamp-2 mb-3">@project.Description</p>
+            </div>
+          </a>
+        </div>          
+      }
+    </div>
+  </div>
+</section>

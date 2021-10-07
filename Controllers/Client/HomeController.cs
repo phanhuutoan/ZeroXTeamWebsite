@@ -218,6 +218,18 @@ namespace ZeroXTeam.Controllers.Client
             return RedirectToAction("GetBlogDetail", new { id = id });
         }
 
+        [HttpGet("members/{id}")]
+        public async Task<IActionResult> MemberDetail(int id) 
+        {   
+            var member = await _memberRepo.GetMemberById(id);
+
+            ViewData["Title"] = "Hồ sơ nhân sự zerox - " + member.Name ;
+
+            ViewData["Member"] = member;
+
+            return View("MemberDetail"); 
+        }
+
         public IActionResult Privacy()
         {
             return View();
