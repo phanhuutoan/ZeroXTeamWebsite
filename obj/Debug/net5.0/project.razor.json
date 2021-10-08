@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\Practice\\ZeroXTeamWebsite\\ZeroXTeam.csproj",
+  "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15617,6 +15617,187 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "ZeroXTeam",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminHome\\Index.cshtml",
+      "TargetPath": "Views\\AdminHome\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\BlogDetail.cshtml",
+      "TargetPath": "Views\\Home\\BlogDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminBlog\\GetCreate.cshtml",
+      "TargetPath": "Views\\AdminBlog\\GetCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Blogs.cshtml",
+      "TargetPath": "Views\\Home\\Blogs.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\MemberDetail.cshtml",
+      "TargetPath": "Views\\Home\\MemberDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminBlog\\Index.cshtml",
+      "TargetPath": "Views\\AdminBlog\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_ReadOnlyRichText.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_ReadOnlyRichText.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\AboutUs.cshtml",
+      "TargetPath": "Views\\Home\\AboutUs.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminHome\\Register.cshtml",
+      "TargetPath": "Views\\AdminHome\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_EditableRichText.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_EditableRichText.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminMember\\Index.cshtml",
+      "TargetPath": "Views\\AdminMember\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Projects.cshtml",
+      "TargetPath": "Views\\Home\\Projects.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_EditDelete.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_EditDelete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminMember\\GetCreate.cshtml",
+      "TargetPath": "Views\\AdminMember\\GetCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_PaginationAndSorting.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_PaginationAndSorting.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminRecruitment\\Index.cshtml",
+      "TargetPath": "Views\\AdminRecruitment\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminProject\\GetCreate.cshtml",
+      "TargetPath": "Views\\AdminProject\\GetCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Recruitments.cshtml",
+      "TargetPath": "Views\\Home\\Recruitments.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\ProjectDetail.cshtml",
+      "TargetPath": "Views\\Home\\ProjectDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminRecruitment\\GetCreate.cshtml",
+      "TargetPath": "Views\\AdminRecruitment\\GetCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminInformation\\Index.cshtml",
+      "TargetPath": "Views\\AdminInformation\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminEmail\\Index.cshtml",
+      "TargetPath": "Views\\AdminEmail\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_ClientPagination.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_ClientPagination.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\components\\_ClientSorting.cshtml",
+      "TargetPath": "Views\\Shared\\components\\_ClientSorting.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminProject\\Index.cshtml",
+      "TargetPath": "Views\\AdminProject\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Contact.cshtml",
+      "TargetPath": "Views\\Home\\Contact.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Shared\\_LayoutAdmin.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutAdmin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\RecruitmentDetail.cshtml",
+      "TargetPath": "Views\\Home\\RecruitmentDetail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\AdminEmail\\Read.cshtml",
+      "TargetPath": "Views\\AdminEmail\\Read.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }

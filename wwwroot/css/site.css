@@ -13603,13 +13603,7 @@ nav ul li a:hover {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0) 60%
-    ),
-    url(../images/banner.jpg);
+  background-image: url(../images/banner.jpg);
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: center;
   background-size: cover;

@@ -23,7 +23,7 @@
               @information?.Title
             </h3>
             <p class="mb-lg-5 mb-4"> @information?.SubTitle </p>
-            <a href="about.html" class="btn btn-outline-primary theme-button">Get Started</a>
+            <a href="/contact" class="btn btn-white">Get Started</a>
           </div>
         </div>
         <div class="clear"></div>
@@ -44,7 +44,7 @@
       <div class="row bottom_grids text-center">
         <div class="col-lg-4 col-md-6 mt-5">
           <div class="s-block">
-            <a href="services.html" class="d-block">
+            <a href="/about" class="d-block">
               <img src="~/images/s1.png" alt="" class="img-fluid" />
               <h3 class="my-3">Interactive</h3>
               <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium tempora rerum
@@ -54,7 +54,7 @@
         </div>
         <div class="col-lg-4 col-md-6 mt-5">
           <div class="s-block">
-            <a href="services.html" class="d-block">
+            <a href="/about" class="d-block">
               <img src="~/images/s2.png" alt="" class="img-fluid" />
               <h3 class="my-3">Business</h3>
               <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium tempora rerum
@@ -64,7 +64,7 @@
         </div>
         <div class="col-lg-4 mt-5">
           <div class="s-block">
-            <a href="services.html" class="d-block">
+            <a href="/about" class="d-block">
               <img src="~/images/s3.png" alt="" class="img-fluid" />
               <h3 class="my-3">Inspiration</h3>
               <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium tempora rerum
@@ -87,7 +87,7 @@
             reprehenderit! Ut sed eveniet quos! Asperiores officia, repudiandae similique reiciendis, ab est magnam esse
             nesciunt ea fuga facere
             voluptatem.</p>
-          <a href="#URL" class="btn btn-primary theme-button">Read More</a>
+          <a href="/projects" class="btn btn-primary theme-button">Read More</a>
         </div>
         <div class="col-lg-6 pl-lg-5 mt-lg-0 mt-5">
           <img src="~/images/about.jpg" class="img-fluid shadow img-curve" alt="" />
@@ -135,7 +135,7 @@
             <p class="mt-md-4 mt-3 mb-md-5 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Necessitatibus, doloribus atque. Corrupti exercitationem voluptatem ipsum iste consequuntur et vitae
               voluptas temporibus? Maxime dolores amet voluptatum illo consequatur placeat fugit ducimus.</p>
-            <a href="about.html" class="btn btn-light theme-button">Read more</a>
+            <a href="/about" class="btn btn-light theme-button">Read more</a>
           </div>
         </div>
       </div>
@@ -353,11 +353,5 @@
       const input = document.querySelector("#heroImgInput");
       const div = document.querySelector("#heroImg");
 
-      div.style.backgroundImage = `linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.2) 50%,
-        rgba(0, 0, 0, 0) 60%
-        ),
-        url(${input.value})`
+      div.style.backgroundImage = `url(${input.value})`
   </script>

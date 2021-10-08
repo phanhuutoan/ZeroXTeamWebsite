@@ -51,7 +51,7 @@
             <i class="fa fa-user" style="color:#e72026;"><p class="p-user">@member.TeamTitles</p></i>
             <i class="fa fa-birthday-cake" style=" color:#e72026; margin-left: 50px; font-size: 14px; "><p class="p-user">@member.DateOfBirth.ToString("dd/MM/yyyy")</p></i>
             <i class="fa fa-calendar" style="color:#e72026; display: block; margin-top: -10px;" ><p class="p-user">@member.JoinedAt.ToString("dd/MM/yyyy")</p></i>
-            <p>@member.Bio</p>          
+            <p> <strong>Giới thiệu: </strong> @member.Bio</p>          
             <ul class="social-list">
             <div class="profile-icon d-flex">
               <li class="mr-4 icon">
@@ -80,19 +80,28 @@
         Nulla mollis dapibus nunc, ut rhoncus
         turpis sodales quis. Integer sit amet mattis quam.</p>
     </div>
-    <div class="grid-view mb-5">
-      @foreach (var project in member.ProjectJoined)
-      {
-        <div class="grid-item">
-          <a href="/projects/@project.Id" class="d-block zoom">
-            <img src="@project.PhotoUrl" alt="" class="img-fluid news-image" />
-            <div class="card-info">
-              <h4 class="mb-3">@project.Name</h4>
-              <p class="line-clamp-2 mb-3">@project.Description</p>
-            </div>
-          </a>
-        </div>          
-      }
-    </div>
+    @if (member.ProjectJoined.Count > 0)
+    {
+      <div class="grid-view mb-5">
+        @foreach (var project in member.ProjectJoined)
+        {
+          <div class="grid-item">
+            <a href="/projects/@project.Id" class="d-block zoom">
+              <img src="@project.PhotoUrl" alt="" class="img-fluid news-image" />
+              <div class="card-info">
+                <h4 class="mb-3">@project.Name</h4>
+                <p class="line-clamp-2 mb-3">@project.Description</p>
+              </div>
+            </a>
+          </div>          
+        }
+      </div>        
+    }
+
+    @if(member.ProjectJoined.Count == 0) {
+      <h4 class="text-center">
+        Hiện không tham gia projects nào 
+      </h4>
+    }
   </div>
 </section>

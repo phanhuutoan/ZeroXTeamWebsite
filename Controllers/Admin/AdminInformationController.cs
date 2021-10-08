@@ -57,7 +57,7 @@ namespace ZeroXTeam.Controllers.Admin
             if (informationDtos.HeroImage?.Length > 0)
             {
                 if (existingInformation != null) await _photoService.DeleteImage(existingInformation.HeroPublicId);
-                var uploadResult = await _photoService.UploadImage(informationDtos.HeroImage);
+                var uploadResult = await _photoService.UploadImage(informationDtos.HeroImage, 800, 2560);
                 information.HeroPublicId = uploadResult.PublicId;
                 information.HeroUrl = uploadResult.ImageUrl;
             }
