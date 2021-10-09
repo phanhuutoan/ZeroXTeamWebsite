@@ -11,7 +11,6 @@
   <div class="container py-5">
     <div class="contacts12-main py-md-3">
       <div class="header-section mb-5 text-center">
-        <h2>Liên hệ</h2>
         @if (TempData["SuccessMessage"] != null)
         {
           <div class="alert alert-success mt-4" style="width: 30rem; margin: 0 auto">
@@ -26,16 +25,16 @@
         <div class="col-lg-6 position-relative">
           <div class="contact-form">
             <div class="header-section mb-4 text-left">
-              <h3>Gửi tin nhắn</h3>
+              <h3>Liên hệ chúng tôi</h3>
               <p class="mt-2 mb-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
                 turpis sodales quis. Integer sit amet mattis quam.</p>
             </div>
             <form asp-action="PostContact" asp-controller="Home" method="POST">
               <div class="main-input">
-                <input type="text" name="Name" placeholder="Enter your name" class="contact-input" required />
-                <input type="email" name="Mail" placeholder="Enter your mail" class="contact-input" required />
-                <input type="text" name="Subject" placeholder="Subject" class="contact-input" />
-                <textarea class="contact-textarea contact-input" name="Message" placeholder="Enter your message" required=""></textarea>
+                <input type="text" name="Name" placeholder="Tên của bạn" class="contact-input" required />
+                <input type="email" name="Mail" placeholder="Email của bạn" class="contact-input" required />
+                <input type="text" name="Subject" placeholder="Tiêu đề" class="contact-input" />
+                <textarea class="contact-textarea contact-input" name="Message" placeholder="Bạn muốn nhắn gửi gì đến chúng tôi" required=""></textarea>
               </div>
               <div class="text-right">
                 <button class="btn-primary btn theme-button">Gửi</button>
