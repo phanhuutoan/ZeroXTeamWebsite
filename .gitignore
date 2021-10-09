@@ -4,3 +4,4 @@ out
 .env
 
 omnisharp.json
+node_modules
