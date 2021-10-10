@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\ZeroXTeamWebsite\\ZeroXTeam.csproj": {}
+    "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj": {}
   },
   "projects": {
-    "F:\\ZeroXTeamWebsite\\ZeroXTeam.csproj": {
+    "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\ZeroXTeamWebsite\\ZeroXTeam.csproj",
+        "projectUniqueName": "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj",
         "projectName": "ZeroXTeam",
-        "projectPath": "F:\\ZeroXTeamWebsite\\ZeroXTeam.csproj",
-        "packagesPath": "C:\\Users\\phanh\\.nuget\\packages\\",
-        "outputPath": "F:\\ZeroXTeamWebsite\\obj\\",
+        "projectPath": "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\ZeroXTeam.csproj",
+        "packagesPath": "C:\\Users\\Toan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\phanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Toan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

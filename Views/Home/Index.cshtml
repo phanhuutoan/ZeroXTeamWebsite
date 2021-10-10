@@ -9,6 +9,15 @@
     var information = ViewData["Information"] as HomePageInformation;
     var heroUrl = Html.Raw(information?.HeroUrl);
     var showedProjects = ViewData["ShowedProjects"] as List<Project>;
+    var listOfActivites = new List<TeamActivity>()
+    {
+      new TeamActivity("/images/sprite.svg#icon-graduation-cap", "Teaching", "Học tập và thực hành những dự án thực tế, cung cấp kiến thức nền tảng."),
+      new TeamActivity("/images/sprite.svg#icon-quill", "Learning", "Nghiêm túc học tập và tiếp thu kiến thức một cách chủ động."),
+      new TeamActivity("/images/sprite.svg#icon-redeem", "Sharing", "Sẵn sàng chia sẻ những kiến thức bạn có."),
+      new TeamActivity("/images/sprite.svg#icon-stats-dots", "Training", "Liên tục đào tạo và bổ sung kỹ năng cần thiết về mọi lĩnh vực trong CNTT."),
+      new TeamActivity("/images/sprite.svg#icon-user-tie", "Working", "Áp dụng những kỹ năng đã học để làm việc, thực hành những dự án thực tế."),
+      new TeamActivity("/images/sprite.svg#icon-stats", "Doing Project", "Biến ý tưởng thành một dự án thực tế hoặc tham gia những dự án thực tế với đầy đủ độ phức tạp cũng như đa dạng về công nghệ."),
+    };
 }
   <!--/header-->
   <!-- index-block1 -->
@@ -35,59 +44,43 @@
   <section class="w3l-passion py-5">
     <div class="container py-md-3">
       <div class="header-section text-center mx-auto">
-        <h6 class="sub-title mb-3">Khát vọng vươn tầm</h6>
-        <h3>Tầm nhìn</h3>
-        <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-          Nulla mollis dapibus nunc, ut rhoncus
-          turpis sodales quis. Integer sit amet mattis quam.</p>
+        <h6 class="sub-title mb-3">Our main activities</h6>
+        <h3>Hoạt động</h3>
+        <p class="my-3"> 
+          <strong>
+              ZeroX Team mang lại những kiến thức nền tảng về lĩnh vực Công nghệ thông tin,cùng với sự phát triển và đào tạo
+              nguồn nhân lực,tạo ra những sản phẩm phục vụ cộng đồng, doanh nghiệp và xã hội theo phương châm: Đơn giản - Dễ 
+              dàng - Sáng tạo - Hiệu quả.
+          </strong> 
+        </p>
       </div>
       <div class="row bottom_grids text-center">
-        <div class="col-lg-4 col-md-6 mt-5">
-          <div class="s-block">
-            <a href="/about" class="d-block">
-              <img src="~/images/s1.png" alt="" class="img-fluid" />
-              <h3 class="my-3">Interactive</h3>
-              <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium tempora rerum
-                perspiciatis?</p>
-            </a>
+        @foreach (var activity in listOfActivites)
+        {
+          <div class="col-lg-4 col-md-6 mt-5">
+            <div class="s-block">
+              <a href="/about" class="d-block">
+                <svg style="fill: #eb5d6a; height: 7.5rem; width: 7.5rem;">
+                  <use xlink:href="@activity.SvgLink"/>
+                </svg>
+                <h3 class="my-3">@activity.Name</h3>
+                <p class="">@activity.Desc</p>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mt-5">
-          <div class="s-block">
-            <a href="/about" class="d-block">
-              <img src="~/images/s2.png" alt="" class="img-fluid" />
-              <h3 class="my-3">Business</h3>
-              <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium tempora rerum
-                perspiciatis?</p>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-4 mt-5">
-          <div class="s-block">
-            <a href="/about" class="d-block">
-              <img src="~/images/s3.png" alt="" class="img-fluid" />
-              <h3 class="my-3">Inspiration</h3>
-              <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium tempora rerum
-                perspiciatis?</p>
-            </a>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </section>
-  <!-- /index-block2 -->
+
   <section class="w3l-values py-5">
     <div class="container py-lg-3 mt-3">
       <div class="row align-items-center">
         <div class="col-lg-6 book-info pr-lg-5">
-          <h6 class="sub-title mb-3">Giá trị cộng đồng</h6>
+          <h6 class="sub-title mb-3">Our main values</h6>
           <h3 class="mb-md-4 mb-3">Giá trị chúng tôi đem lại</h3>
-          <p class="mb-md-5 mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et est repellendus illum
-            harum quam nihil totam
-            reprehenderit! Ut sed eveniet quos! Asperiores officia, repudiandae similique reiciendis, ab est magnam esse
-            nesciunt ea fuga facere
-            voluptatem.</p>
-          <a href="/projects" class="btn btn-primary theme-button">Read More</a>
+          <p class="mb-md-5 mb-4">Zero X team thành lập với giá trị cốt lõi là mong muốn đem đến một cộng đồng học tập và chia sẻ kiến thức hữu ích, giá trị dành cho tất cả những người có đam mê tìm hiểu về lập trình, quan tâm đến ngôn ngữ máy và trí tuệ nhân tạo. Đến với Zero X, bạn sẽ được trải nghiệm và học hỏi ở môi trường năng động, đầy nhiệt huyết, sáng tạo, nơi mọi người cùng chia sẻ, cùng  giúp đỡ nhau phát triển và xây dựng những dự án ý nghĩa dành cho cộng đồng - nơi mọi người sống tốt hơn, tiện lợi hơn, an toàn hơn nhờ vào công nghệ. </p>
+          <a href="/projects" class="btn btn-primary theme-button">Tìm hiểu thêm</a>
         </div>
         <div class="col-lg-6 pl-lg-5 mt-lg-0 mt-5">
           <img src="~/images/about.jpg" class="img-fluid shadow img-curve" alt="" />
@@ -95,7 +88,7 @@
       </div>
     </div>
   </section>
-  <!-- stats -->
+  
   <section class="w3l-stats pb-5 pt-4" id="stats">
     <div class="gallery-inner container pb-lg-3">
       <div class="row stats-con text-white">
@@ -103,28 +96,28 @@
           <div class="stats_info counter_grid">
             <h4>Thành Viên</h4>
             <p class="counter"> @ViewData["NumberOfMembers"] </p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere atque sed.</p>
+            <p>Số lượng đối với chúng tôi không quan trọng mà chủ yếu là chất lượng thành viên, bạn có muốn trở thành một trong chúng tôi?</p>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
           <div class="stats_info counter_grid1">
             <h4>Giải Thưởng</h4>
             <p class="counter">20</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere atque sed.</p>
+            <p>ZeroX cùng đồng đội đã tham gia và đạt nhiều giải thưởng danh giá trong các cuộc thi cho sinh viên và hackathon</p>
           </div>
         </div>
         <div class="col-lg-4 col-sm-6 mt-lg-0 mt-sm-5 mt-4">
           <div class="stats_info counter_grid">
             <h4>Dự Án</h4>
             <p class="counter"> @ViewData["NumberOfProjects"] </p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere atque sed.</p>
+            <p>Dự án của chúng tôi trải dài từ quy mô trường học, đồ án cho tới tầm doanh nghiệp vừa và nhỏ. Cùng với nhiều loại công nghệ khác nhau.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- //stats -->
-  <section class="w3l-intro">
+  
+  @* <section class="w3l-intro">
     <div class="new-block top-bottom">
       <div class="container">
         <div class="middle-section">
@@ -140,12 +133,13 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> *@
+
   <!-- Projects Section -->
   <section class="w3l-projects py-5">
       <div class="container py-lg-3">
         <div class="header-section text-center mx-auto">
-          <h6 class="sub-title mb-3">Dự án của chúng tôi</h6>
+          <h6 class="sub-title mb-3">Our projects</h6>
           <h3>Dự Án Đã Hoàn Thành</h3>
           <p class="my-3 mb-5"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
             Nulla mollis dapibus nunc, ut rhoncus
@@ -170,7 +164,7 @@
       </div>
   </section>
 
-  <section class="w3l-testimonials" id="testimonials">
+  @* <section class="w3l-testimonials" id="testimonials">
     <div class="testimonials py-5">
       <div class="container py-lg-3">
         <div class="header-section text-center mx-auto">
@@ -256,9 +250,9 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> *@
 
-  <section class="w3l-faq-block py-5" id="faq">
+  @* <section class="w3l-faq-block py-5" id="faq">
     <div class="container py-lg-5">
       <div class="header-section text-center mx-auto">
         <h6 class="sub-title mb-3">Questions and Answers</h6>
@@ -335,16 +329,14 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> *@
 
   <section class="w3l-mission py-5">
     <div class="container py-md-3 text-center">
       <div class="header-section text-center mx-auto">
-        <h6 class="sub-title mb-3">Sứ mệnh của chúng tôi</h6>
-        <h3>ZeroX - Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h3>
-        <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vitae quasi dolorem consectetur
-          illo id reiciendis distinctio nihil ipsa praesentium iusto, porro quisquam excepturi, aliquam nesciunt neque
-          perferendis cumque itaque.</p>
+        <h6 class="sub-title mb-3">Our mission</h6>
+        <h3>ZeroX - và sứ mệnh</h3>
+        <p class="my-3">ZeroX Team luôn làm việc với sứ mệnh: tập trung vào việc phát triển con người, đào tạo nguồn nhân lực chất lượng cao, luôn đổi mới và sáng tạo, luôn quan tâm đến sự cống hiến cho cộng đồng và cả sự phát triển của đội ngũ nhân sự, trở thành bệ phóng startup thành công cho sinh viên nói riêng và bất cứ ai mong muốn phát triển bản thân trong ngành CNTT.</p>
       </div>
     </div>
   </section>
