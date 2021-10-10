@@ -3,6 +3,12 @@
 @{
   var information = ViewData["Information"] as HomePageInformation;
   var members = ViewData["Members"] as List<Member>;
+  var listOfTeamChannels = new List<TeamChannel>()
+  {
+    new TeamChannel("ZeroX Facebook", "Gặp ZeroX trên facebook, để cùng thảo luận với chúng tôi", "https://www.facebook.com/zeroxteam", "/images/sprite.svg#icon-facebook"),
+    new TeamChannel("SchoolX Youtube", "Video khóa học FREE trên youtube, được các mentor kĩ lưỡng biên soạn", "https://www.youtube.com/c/schoolXedu", "/images/sprite.svg#icon-youtube"),
+    new TeamChannel("ZeroX Discord", "Trò chuyện và chém gió hết mình trên discord cùng ZeroX", "https://discord.gg/AmuVfPcSmb", "/images/sprite.svg#icon-discord"),
+  };
 }
 
 <!--/header-->
@@ -23,15 +29,15 @@
 
         <div class="cwp4-text col-lg-6">
           <h3>Câu chuyện của ZeroX Team</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud.
-          </p>
+          <p>ZeroX team được thành lập vào khoảng giữa năm 2020, với một nhóm nhỏ những thành viên có tâm huyết,
+             cùng nhau xây dựng một cộng đồng chia sẻ và học những lĩnh vực liên quan tới lập trình.
+             Chúng tôi đã cùng nhau làm gì: </p>
 
           <ul class="cont-4">
-            <li><span class="fa fa-check"></span>Thiết kế và phát triển trang web</li>
-            <li><span class="fa fa-check"></span>Phát triển ứng dụng Android and IOS</li>
-            <li><span class="fa fa-check"></span>Build courses on programming</li>
-            <li><span class="fa fa-check"></span>Hồ sơ xuất sắc</li>
+            <li><span class="fa fa-check"></span>Thiết kế và phát triển sản phẩm web</li>
+            <li><span class="fa fa-check"></span>Phát triển ứng dụng Mobile</li>
+            <li><span class="fa fa-check"></span>Hoạt động chia sẻ kiến thức cộng đồng</li>
+            <li><span class="fa fa-check"></span>Hoạt động đào tạo với những dự án thực tế, ứng dụng cao.</li>
           </ul>
         </div>
         <div class="cwp4-image col-lg-6 pl-lg-5 mt-lg-0 mt-5">
@@ -46,31 +52,36 @@
     <div class="container py-lg-3">
 
       <div class="fea-gd-vv row ">
-        <div class="float-lt feature-gd col-lg-4 col-sm-6">
-
+        <div class="float-lt feature-gd col-lg-4 col-sm-6 pr-4">
           <div class="icon-info">
-            <h5>Our History 1795</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud.
+            <h5>Nguồn gốc ZeroX</h5>
+            <p>
+              Được thành lập từ các bạn sinh viên ưu tú Bách Khoa Đà Nẵng 
+              cùng với những người trẻ đang đi làm từ giữa năm <b>2020</b>, cùng chí hướng
+              trong việc phát triển một cộng đồng IT chất lượng, trước là ở Đà Nẵng, rồi mở rộng ra cả nước.
             </p>
           </div>
 
         </div>
-        <div class="float-mid feature-gd col-lg-4 col-sm-6 mt-sm-0 mt-4">
+        <div class="float-mid feature-gd col-lg-4 col-sm-6 mt-sm-0 mt-4 pr-4">
 
           <div class="icon-info">
-            <h5>The power of business</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud.
+            <h5>Phương pháp của ZeroX</h5>
+            <p>
+              ZeroX team kết hợp luân phiên các hoạt động <strong>learning</strong> , <strong>sharing</strong>, 
+              <strong>teaching</strong> và cả <strong>làm các project</strong>  
+              thực tế để tạo ra một thế hệ chiến binh trẻ giàu kinh nghiệm và kĩ năng là việc hiệu quả.
             </p>
           </div>
         </div>
         <div class="float-rt feature-gd col-lg-4 col-sm-6 mt-lg-0 mt-sm-5 mt-4">
 
           <div class="icon-info">
-            <h5>120 Customer service</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud.
+            <h5>Đội ngũ ZeroX</h5>
+            <p>
+              Đội ngũ của ZeroX trải rộng từ các sinh viên mới vào trường, các sinh viên ưu tú
+              trong các trường Đại học uy tín trên khắp cả nước, những người trẻ tuổi đang đi làm,
+              cho đến những KOL có tầm ảnh hưởng lớn trong lĩnh vực công nghệ thông tin.
             </p>
           </div>
         </div>
@@ -83,71 +94,38 @@
 <div class="w3l-services py-5">
     <div class="container principles-grids principles-grids1 py-lg-3">
       <div class="header-section text-center mx-auto" style="margin-bottom: 3rem;">
-        <h6 class="sub-title mb-3">Hoạt động</h6>
-        <h1>Chuyên Môn Hoạt Động</h1>
-        <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-          Nulla mollis dapibus nunc, ut rhoncus
-          turpis sodales quis. Integer sit amet mattis quam.</p>
+        <h6 class="sub-title mb-3">ZeroX channels</h6>
+        <h1>Các Kênh Của ZeroX </h1>
+        <p class="my-3"> 
+          ZeroX hoạt động tích cực thông qua các kênh trên mạng xã hội, nên các bạn có thể dễ dàng tìm thấy chúng tôi ở mọi nơi.
+        </p>
       </div>
       
         <div class="scrollbar-services-scroll">
             <div class="row abt-btm pt-4">
-                <div class="col-lg-3 col-sm-6 bottom-gds">
+              @foreach (var item in listOfTeamChannels)
+              {
+                <div class="col-lg-4 col-sm-6 bottom-gds">
                     <div class="elite-services1">
                         <div class="bott-img">
                             <div class="icon-holder editContent">
-                                <span class="fa fa-usd a" aria-hidden="true"></span>
+                                <svg style="fill: white; height: 2rem; width: 2rem;">
+                                  <use xlink:href="@item.SVG"/>
+                                </svg>
                             </div>
-                            <h4 class="mission">Web developer</h4>
+                            <h4 class="mission">@item.Name</h4>
                             <div class="description">
-                                <p>Enean eget dolor dolor sit amet commodo ligula</p>
-                                <a href="services.html" class="editContent">Read More</a>
+                                <p>@item.Desc</p>
+                                <a 
+                                  href="@item.Link" 
+                                  target="blank" class="editContent">
+                                  Tham gia ngay
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 bottom-gds mt-sm-0 mt-5">
-                    <div class="elite-services2">
-                        <div class="bott-img">
-                            <div class="icon-holder editContent">
-                                <span class="fa fa-user-circle-o service-icon" aria-hidden="true"></span>
-                            </div>
-                            <h4 class="mission">Application Programming</h4>
-                            <div class="description">
-                                <p>Commodo ligula eget dolor dolor sit amet ligula</p>
-                                <a href="services.html" class="editContent">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 bottom-gds mt-lg-0 mt-5">
-                    <div class="elite-services3">
-                        <div class="bott-img">
-                            <div class="icon-holder editContent">
-                                <span class="fa fa-hand-peace-o service-icon" aria-hidden="true"></span>
-                            </div>
-                            <h4 class="mission">Artificial Intelligence</h4>
-                            <div class="description">
-                                <p>Enean eget dolor dolor sit amet commodo ligula</p>
-                                <a href="services.html" class="editContent">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 bottom-gds mt-lg-0 mt-5">
-                    <div class="elite-services4">
-                        <div class="bott-img">
-                            <div class="icon-holder editContent">
-                                <span class="fa fa-laptop service-icon" aria-hidden="true"></span>
-                            </div>
-                            <h4 class="mission">Create Course</h4>
-                            <div class="description">
-                                <p>Commodo ligula eget dolor dolor sit amet ligula</p>
-                                <a href="services.html" class="editContent">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              }
             </div>
         </div>
     </div>
@@ -158,39 +136,23 @@
     <div class="container py-lg-5">
       <div class="middle-section text-center">
         <div class="header-section text-center mx-auto">
-          <h6 class="sub-title mb-3">Tổ Chức</h6>
+          <h6 class="sub-title mb-3">Organization</h6>
           <h3>Sơ Đồ Tổ Chức</h3>
-          <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-            Nulla mollis dapibus nunc, ut rhoncus
-            turpis sodales quis. Integer sit amet mattis quam.</p>
+          <p class="my-3"> 
+            Tổ chức của toàn bộ zeroX chia làm 2 ban chính là <b>Technical</b> và <b>Non-Technical</b>, 
+            Technical sẽ được chia là Backend, Frontend và Mobile
+            Non-Technical sẽ được chia thành Media, Business, Content.
+          </p>
         </div>
         
         <div class="history-info mt-5">
           <div class="position-relative">
-            <img src="~/images/sodotochuc.png" class="img-fluid img-curve video-popup-image" alt="video-popup">
-            <!-- <a href="#popup-video" class="play-view text-center position-absolute">
-						<span class="video-play-icon">
-							<span class="fa fa-play"></span>
-						</span>
-					</a> -->
-
-            <!-- <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center position-absolute">
-              <span class="video-play-icon">
-                <span class="fa fa-play"></span>
-              </span>
-            </a> -->
-
-            <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-            <!-- <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-              <iframe src="https://www.youtube.com/embed/a5KYlHNKQB8" allowfullscreen></iframe>
-            </div> -->
+            <a target="blank" href="https://www.mindmeister.com/2051116152?t=4hEsPRKXgt&fbclid=IwAR3pJiopH1pRmAB3ybic7QbveEDibBhcj-npskEU4UOQFgLY60qTPz2U5Q4">
+              <img src="~/images/graph.PNG" class="img-fluid img-curve video-popup-image" alt="video-popup">
+            </a>
           </div>
         </div>
         <div class="mt-5 request-quote">
-          <!-- request a demo form popup -->
-          <!-- <button type="button" class="btn btn-primary theme-button" data-toggle="modal" data-target="#exampleModalCenter">
-            Request a quote
-          </button> -->
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -234,7 +196,7 @@
     </div>
   </div>
 </section>
-<!-- customers Section -->
+@* <!-- customers Section -->
 <section class="w3l-customers pb-5">
   <div class="container py-lg-3">
     <div class="row">
@@ -260,7 +222,7 @@
     </div>
   </div>
 </section>
-<!-- //customers Section -->
+<!-- //customers Section --> *@
 <!--/team-sec-->
 <section class="w3l-team">
   <div class="team py-5">
@@ -268,10 +230,10 @@
       
       <div class="header-section text-center mx-auto">
         <h6 class="sub-title mb-3">Our Team Members</h6>
-        <h3>Our Creative Team</h3>
-        <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-          Nulla mollis dapibus nunc, ut rhoncus
-          turpis sodales quis. Integer sit amet mattis quam.</p>
+        <h3>Các thành viên của ZeroX</h3>
+        <p class="my-3"> 
+          Đội ngũ đứng đằng sau ZeroX là những con người tâm huyết, được lựa chọn kĩ càng. 
+        </p>
       </div>
 
       <div class="row team-row pt-3 mt-5">
@@ -310,14 +272,11 @@
       </div>
     </div>
 </section>
+<hr style="margin: 0">
 <!--//team-sec-->
-<section class="w3l-mission1 py-5">
+@* <section class="w3l-mission1 py-5">
   <div class="container py-md-3 text-center">
     <div class="header-section text-center mx-auto">
-      @* <h3>Kim Chỉ Nam và Cách Tư Duy </h3>
-      <p class="my-3"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-        Nulla mollis dapibus nunc, ut rhoncus
-        turpis sodales quis. Integer sit amet mattis quam.</p> *@
       <div class="row">
         <div class="col-md-6 col-sm-3">
           <h3> Kim Chỉ Nam </h3>
@@ -338,4 +297,4 @@
       <a href="contact.html" class="btn btn-primary theme-button ml-2">Get Started</a>
     </div> -->
   </div>
-</section>
+</section> *@
