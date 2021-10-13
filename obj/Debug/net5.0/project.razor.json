@@ -15774,6 +15774,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\NotFoundError.cshtml",
+      "TargetPath": "Views\\Home\\NotFoundError.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Toan\\OneDrive\\Documents\\ZeroXTeam\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"

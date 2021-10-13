@@ -233,10 +233,16 @@ namespace ZeroXTeam.Controllers.Client
         public IActionResult Privacy()
         {
             return View();
-        }
+        } 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet("not-found")]
+        public IActionResult NotFoundError()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
