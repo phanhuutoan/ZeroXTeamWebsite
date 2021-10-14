@@ -13057,7 +13057,7 @@ a.brand-logo img {
   margin: 0 auto;
 }
 
-.header-section h3 {
+.header-section h3, .header-section h1 {
   color: var(--title-color);
   font-size: 46px;
   line-height: 1;
@@ -13610,7 +13610,7 @@ nav ul li a:hover {
   padding: 8rem 0;
 }
 
-.w3l-hero-area .content-left h3 {
+.w3l-hero-area .content-left h1 {
   font-size: 50px;
   line-height: 57.5px;
   color: white;
@@ -13713,7 +13713,7 @@ nav ul li a:hover {
   background-color: var(--light-bg-color);
 }
 
-.w3l-values .book-info h3 {
+.w3l-values .book-info h1 {
   font-size: 35px;
   line-height: 40px;
   color: var(--title-color);
