@@ -454,3 +454,4 @@ F:\ZeroXTeamWebsite\obj\Debug\net5.0\ref\ZeroXTeam.dll
 F:\ZeroXTeamWebsite\obj\Debug\net5.0\ZeroXTeam.pdb
 F:\ZeroXTeamWebsite\obj\Debug\net5.0\ZeroXTeam.genruntimeconfig.cache
 C:\Users\Toan\OneDrive\Documents\ZeroXTeam\obj\Debug\net5.0\Razor\Views\Home\NotFoundError.cshtml.g.cs
+F:\ZeroXTeamWebsite\obj\Debug\net5.0\Razor\Views\Home\NotFoundError.cshtml.g.cs
