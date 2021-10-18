@@ -29,7 +29,6 @@
       <th scope="col">Name</th>
       <th scope="col">Image</th>
       <th scope="col">Date Of Birth</th>
-      <th scope="col">Joined At</th>
       <th scope="col">Show for client</th>
       <th scope="col">Edit / Delete</th>
     </tr>
@@ -46,15 +45,15 @@
       };
 
       var alertClass = !member.ShowForClient ? "alert-danger" : "alert-success";
+      var priority = @member?.Priority == null ? 0 : @member.Priority;
 
       <tr>
         <th scope="row">@member?.Id</th>
-        <td>@member?.Name</td>
+        <td>@member?.Name (@member?.Priority)</td>
         <td>
           <img src="@member?.PhotoUrl" alt="photo" height="100" class="img-thumbnail" style="height: 7rem;">
         </td>
-        <td>@member?.DateOfBirth</td>
-        <td>@member?.JoinedAt</td>
+        <td>@member?.DateOfBirth.ToString("dd/MM/yyyy")</td>
         <td>
           <p class="alert @alertClass"> Show status </p>
         </td>
@@ -86,6 +85,7 @@
       new SortOption("TeamTitle", "Member 's Title"),
       new SortOption("DateOfBirth", "By Date of birth"),
       new SortOption("JoinedAt", "Day that member joined"),
+      new SortOption("Priority", "Sort by priority"),
     }
   };
 }

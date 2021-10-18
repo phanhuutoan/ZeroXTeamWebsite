@@ -12880,11 +12880,11 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: "Comfortaa", cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 textarea {
-  font-family: "Comfortaa", cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 * {
@@ -12986,7 +12986,7 @@ button,
 .btn,
 select {
   cursor: pointer;
-  font-family: "Comfortaa", cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 a,
@@ -13011,7 +13011,7 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  font-family: "Comfortaa", cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
@@ -13039,7 +13039,7 @@ p {
 
 a.brand-logo {
   color: var(--title-color);
-  font-family: "Comfortaa", cursive;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   font-size: 36px;
 }
@@ -17170,7 +17170,6 @@ div#small-dialog iframe {
     line-height: 35px;
   }
   .social-list {
-    padding-left: 50px;
     display: flex;
     list-style: none;
     justify-content: center !important;
@@ -17236,6 +17235,6 @@ div#small-dialog iframe {
   font-weight: normal;
   font-size: 16px;
   color: var(--title-color);
-  font-family: 'Comfortaa';
+  font-family: 'Roboto', sans-serif;
   /* text-transform: capitalize; */
 }

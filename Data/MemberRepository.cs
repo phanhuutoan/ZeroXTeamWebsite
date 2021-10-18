@@ -37,6 +37,7 @@ namespace ZeroXTeam.Data
             "TeamTitles" => query.OrderBy(m => m.TeamTitles),
             "DateOfBirth" => query.OrderBy(m => m.DateOfBirth),
             "JoinedAt" => query.OrderBy(m => m.JoinedAt),
+            "Priority" => query.OrderBy(m => m.Priority).ThenBy(m => m.Name),
             _ => query.OrderBy(m => m.Id)
         };
 
@@ -70,6 +71,7 @@ namespace ZeroXTeam.Data
         member.ShowForClient = newMember.ShowForClient;
         member.Facebook = newMember.Facebook;
         member.Email = newMember.Email;
+        member.Priority = newMember.Priority;
 
         _context.Member.Update(member);
 
@@ -115,8 +117,8 @@ namespace ZeroXTeam.Data
     {
         return await _context.Member
             .Where(mem => mem.ShowForClient)
-            .OrderBy(mem => mem.Id)
-            .Take(9)
+            .OrderBy(mem => mem.Priority).ThenBy(mem => mem.Name)
+            .Take(12)
             .ToListAsync();
     }
   }

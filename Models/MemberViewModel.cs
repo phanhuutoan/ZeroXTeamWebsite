@@ -11,6 +11,7 @@ namespace ZeroXTeam.Models
         public string Bio { get; set; }
         public string Facebook { get; set; }
         public string Email { get; set; }
+        public int Priority { get; set; }
         public bool ShowForClient { get; set; }        
         public IFormFile Photo { get; set; }
         public DateTime DateOfBirth { get; set; } 

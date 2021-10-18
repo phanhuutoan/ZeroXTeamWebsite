@@ -12,6 +12,7 @@ namespace ZeroXTeam.Entities
         public bool ShowForClient { get; set; }
         public string Facebook { get; set; }
         public string Email { get; set; }
+        public int Priority { get; set; }
         public ICollection<Project> ProjectJoined { get; set; } = new List<Project>();
     }
 }

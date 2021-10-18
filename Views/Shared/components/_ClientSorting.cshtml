@@ -8,14 +8,12 @@
     <select class="form-control mr-2" name="SortBy">
       <option value="sorting">Được sắp xếp theo: </option>
       @foreach (var option in Model.SortingOptions)
-
-
       {
         var isSelected = Model.SortBy == option.Value;
 
         <option value="@option.Value" selected="@isSelected" class="mt-2 mb-2"> @option.Display </option>          
       }
     </select>
-    <button class="btn btn-primary theme-button" style="transform: translateY(-1px);">Sắp xếp</button>
+    <button class="btn btn-primary theme-button" style="transform: translateY(-1px);">Sort</button>
 
 </form>
