@@ -72,6 +72,7 @@ namespace ZeroXTeam.Data
         member.Facebook = newMember.Facebook;
         member.Email = newMember.Email;
         member.Priority = newMember.Priority;
+        member.DateOfBirth = newMember.DateOfBirth;
 
         _context.Member.Update(member);
 
